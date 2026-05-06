@@ -23,7 +23,7 @@
 *:focus{outline:none}
 html{scroll-behavior:smooth;background:var(--night)}
 body{
-  font-family:'Tajawal',sans-serif;
+  font-family:'Tajawal','SF Arabic','Geeza Pro','Helvetica Neue',sans-serif;
   background:var(--night);
   color:var(--sand);
   overflow-x:hidden;
@@ -129,9 +129,11 @@ body{
   50%{transform:scale(1.04);box-shadow:0 0 50px rgba(232,200,120,.5),inset 0 0 28px rgba(232,200,120,.25)}
 }
 .monogram-ring .m-name{
-  font-family:'Aref Ruqaa Ink',serif;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
   font-size:24px;line-height:1.1;font-weight:700;
 }
 .monogram-ring .m-amp{
@@ -139,14 +141,16 @@ body{
   color:var(--gold-bright);font-size:18px;margin:2px 0;
 }
 .curtain-title{
-  font-family:'Aref Ruqaa Ink',serif;font-size:26px;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:26px;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
   letter-spacing:.18em;
 }
 .curtain-hint{
-  font-family:'Tajawal',sans-serif;font-size:13px;color:var(--sand);
-  opacity:.55;font-style:italic;letter-spacing:.1em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;color:var(--sand);
+  opacity:.55;letter-spacing:.4em;font-weight:500;
   animation:fade 2.6s ease-in-out infinite;
 }
 @keyframes fade{0%,100%{opacity:.35}50%{opacity:.75}}
@@ -168,13 +172,15 @@ section{
 @media (min-width:600px){section{padding:14vh 10vw}}
 
 .eyebrow{
-  font-family:'Tajawal',sans-serif;font-size:11px;letter-spacing:.45em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:.45em;
   color:var(--gold-raw);text-transform:none;margin-bottom:2.4em;
-  font-weight:400;
+  font-weight:500;
 }
 .gold-text{
-  background:linear-gradient(180deg,var(--moon) 0%,var(--sand) 25%,var(--gold-bright) 55%,var(--gold-raw) 80%,var(--gold-deep) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878; /* fallback if clip fails */
+  background:linear-gradient(180deg,#f4ead4 0%,#e8d9bf 25%,#e8c878 55%,#b8924a 80%,#8a6a30 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
 }
 
 /* === HERO === */
@@ -185,19 +191,21 @@ section{
   filter:drop-shadow(0 0 18px rgba(184,146,74,.5)) drop-shadow(0 0 4px rgba(232,200,120,.3));
 }
 .hero-eyebrow{
-  font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:.4em;
-  color:var(--gold-bright);margin-bottom:4vh;font-weight:300;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;letter-spacing:.4em;
+  color:var(--gold-bright);margin-bottom:4vh;font-weight:500;
 }
 .names-stack{
   display:flex;flex-direction:column;align-items:center;gap:.05em;
   margin:2vh 0;
 }
 .name{
-  font-family:'Aref Ruqaa Ink',serif;
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;
   font-size:clamp(72px,18vw,128px);
   line-height:1.05;font-weight:700;
-  background:linear-gradient(175deg,var(--moon) 0%,var(--sand) 22%,var(--gold-bright) 48%,var(--gold-raw) 72%,var(--gold-deep) 95%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878; /* fallback */
+  background:linear-gradient(175deg,#f4ead4 0%,#e8d9bf 22%,#e8c878 48%,#b8924a 72%,#8a6a30 95%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
   filter:drop-shadow(0 2px 12px rgba(184,146,74,.25));
   letter-spacing:.02em;
 }
@@ -213,7 +221,7 @@ section{
   opacity:.7;
 }
 .scroll-cue-text{
-  font-family:'Tajawal',sans-serif;font-size:10px;letter-spacing:.5em;color:var(--gold-raw);
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:10px;letter-spacing:.5em;color:var(--gold-raw);font-weight:500;
 }
 .scroll-cue-line{
   width:1px;height:50px;
@@ -232,13 +240,15 @@ section{
 .bracket.tr{top:-10px;right:-10px;border-bottom:none;border-left:none}
 .bracket.bl{bottom:-10px;left:-10px;border-top:none;border-right:none}
 .basmala{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(20px,4.4vw,28px);font-weight:700;
+  font-family:'Aref Ruqaa','Aref Ruqaa Ink','SF Arabic','Geeza Pro',serif;font-size:clamp(20px,4.4vw,28px);font-weight:700;
   margin-bottom:5vh;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
 }
 .verse{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(17px,4vw,24px);
+  font-family:'Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(17px,4vw,24px);
   line-height:2.4;color:var(--sand);font-weight:400;
   letter-spacing:.01em;
 }
@@ -254,17 +264,19 @@ section{
   background:linear-gradient(180deg,transparent,var(--gold-raw),transparent);
 }
 .host-eyebrow{
-  font-family:'Aref Ruqaa',serif;font-size:14px;color:var(--gold-bright);
-  letter-spacing:.2em;margin-bottom:3vh;font-weight:400;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;color:var(--gold-bright);
+  letter-spacing:.4em;margin-bottom:3vh;font-weight:500;
 }
 .host-text{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(18px,4vw,24px);
+  font-family:'Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(18px,4vw,24px);
   line-height:2.2;color:var(--sand);max-width:620px;margin:0 auto;font-weight:400;
 }
 .host-text strong{
   font-weight:700;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
 }
 
 /* === DATE / CONSTELLATION === */
@@ -275,16 +287,16 @@ section{
   width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-raw),transparent);
 }
 .section-head .head-text{
-  font-family:'Aref Ruqaa',serif;font-size:14px;letter-spacing:.4em;color:var(--gold-bright);font-weight:400;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;letter-spacing:.5em;color:var(--gold-bright);font-weight:500;
 }
 .constellation{margin:2vh auto 5vh;display:block}
 .date-main{
-  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(28px,7vw,42px);
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(28px,7vw,42px);
   line-height:1.3;font-weight:700;margin-bottom:1.4vh;
 }
 .date-sub{
-  font-family:'Tajawal',sans-serif;font-size:clamp(12px,3vw,15px);
-  letter-spacing:.18em;color:var(--sand);opacity:.75;font-weight:300;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:clamp(12px,3vw,15px);
+  letter-spacing:.18em;color:var(--sand);opacity:.75;font-weight:400;
   margin-bottom:7vh;
 }
 .countdown{
@@ -303,8 +315,8 @@ section{
   margin-bottom:8px;
 }
 .cd-label{
-  font-family:'Aref Ruqaa',serif;font-size:11px;letter-spacing:.18em;
-  color:var(--gold-raw);font-weight:400;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:10px;letter-spacing:.25em;
+  color:var(--gold-raw);font-weight:500;
 }
 .cd-sep{
   width:1px;align-self:stretch;margin-top:8px;height:46px;
@@ -314,24 +326,24 @@ section{
 /* === VENUE === */
 .venue-arch{margin:0 auto 4vh;display:block;position:relative}
 .hall{
-  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(26px,6.4vw,34px);
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(26px,6.4vw,34px);
   line-height:1.35;font-weight:700;margin-bottom:1.6vh;max-width:90%;
   margin-left:auto;margin-right:auto;
 }
 .city{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(15px,3.6vw,18px);
-  color:var(--sand);letter-spacing:.18em;margin-bottom:1vh;font-weight:400;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:clamp(13px,3.4vw,16px);
+  color:var(--sand);letter-spacing:.25em;margin-bottom:1.5vh;font-weight:400;
 }
 .event-type{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;
-  color:var(--gold-raw);opacity:.8;margin-bottom:5vh;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:.5em;
+  color:var(--gold-raw);opacity:.75;margin-bottom:5vh;font-weight:500;
 }
 .map-btn{
   display:inline-block;position:relative;overflow:hidden;
   padding:14px 36px;border:1px solid var(--gold-raw);
-  font-family:'Tajawal',sans-serif;font-size:13px;letter-spacing:.2em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;letter-spacing:.25em;
   color:var(--gold-bright);text-decoration:none;background:transparent;
-  font-weight:400;cursor:pointer;transition:color .5s ease;z-index:1;
+  font-weight:500;cursor:pointer;transition:color .5s ease;z-index:1;
 }
 .map-btn::before{
   content:'';position:absolute;inset:0;width:0;
@@ -344,7 +356,7 @@ section{
 
 /* === CLOSING === */
 .closing-text{
-  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(28px,6.5vw,40px);
+  font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(28px,6.5vw,40px);
   line-height:1.5;font-weight:700;
 }
 .closing-mono{
@@ -526,44 +538,79 @@ section{
       <span class="head-line"></span>
     </div>
 
-    <svg class="constellation reveal-blur" width="280" height="180" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+    <svg class="constellation reveal-blur" width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="starGlow">
-          <stop offset="0%" stop-color="#e8c878" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#e8c878" stop-opacity="0"/>
+        <linearGradient id="starG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f4ead4"/>
+          <stop offset="40%" stop-color="#e8c878"/>
+          <stop offset="80%" stop-color="#b8924a"/>
+          <stop offset="100%" stop-color="#8a6a30"/>
+        </linearGradient>
+        <radialGradient id="starHalo">
+          <stop offset="0%" stop-color="#e8c878" stop-opacity=".22"/>
+          <stop offset="55%" stop-color="#b8924a" stop-opacity=".06"/>
+          <stop offset="100%" stop-color="#b8924a" stop-opacity="0"/>
         </radialGradient>
       </defs>
-      <!-- connecting lines -->
-      <g stroke="#b8924a" stroke-width=".5" opacity=".4" fill="none">
-        <line x1="40" y1="40" x2="100" y2="60"/>
-        <line x1="100" y1="60" x2="160" y2="35"/>
-        <line x1="160" y1="35" x2="220" y2="55"/>
-        <line x1="220" y1="55" x2="240" y2="110"/>
-        <line x1="240" y1="110" x2="180" y2="130"/>
-        <line x1="180" y1="130" x2="100" y2="135"/>
-        <line x1="100" y1="135" x2="40" y2="100"/>
-        <line x1="40" y1="100" x2="40" y2="40"/>
-      </g>
-      <!-- 21 faintly inside -->
-      <text x="140" y="105" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="60" fill="#b8924a" opacity=".15">٢١</text>
-      <!-- stars -->
-      <g>
-        <circle cx="40" cy="40" r="20" fill="url(#starGlow)"/>
-        <polygon points="40,32 42,40 48,40 42,42 40,48 38,42 32,40 38,40" fill="#e8c878"/>
-        <circle cx="100" cy="60" r="20" fill="url(#starGlow)"/>
-        <polygon points="100,52 102,60 108,60 102,62 100,68 98,62 92,60 98,60" fill="#e8c878"/>
-        <circle cx="160" cy="35" r="20" fill="url(#starGlow)"/>
-        <polygon points="160,27 162,35 168,35 162,37 160,43 158,37 152,35 158,35" fill="#e8c878"/>
-        <circle cx="220" cy="55" r="20" fill="url(#starGlow)"/>
-        <polygon points="220,47 222,55 228,55 222,57 220,63 218,57 212,55 218,55" fill="#e8c878"/>
-        <circle cx="240" cy="110" r="20" fill="url(#starGlow)"/>
-        <polygon points="240,102 242,110 248,110 242,112 240,118 238,112 232,110 238,110" fill="#e8c878"/>
-        <circle cx="180" cy="130" r="20" fill="url(#starGlow)"/>
-        <polygon points="180,122 182,130 188,130 182,132 180,138 178,132 172,130 178,130" fill="#e8c878"/>
-        <circle cx="100" cy="135" r="20" fill="url(#starGlow)"/>
-        <polygon points="100,127 102,135 108,135 102,137 100,143 98,137 92,135 98,135" fill="#e8c878"/>
-        <circle cx="40" cy="100" r="20" fill="url(#starGlow)"/>
-        <polygon points="40,92 42,100 48,100 42,102 40,108 38,102 32,100 38,100" fill="#e8c878"/>
+
+      <!-- soft halo behind everything -->
+      <circle cx="120" cy="120" r="115" fill="url(#starHalo)"/>
+
+      <g transform="translate(120 120)">
+        <!-- OUTER 8-POINT STAR: two overlapping squares -->
+        <polygon points="-100,0 0,-100 100,0 0,100"
+                 fill="none" stroke="url(#starG)" stroke-width="1.1" opacity=".95"/>
+        <polygon points="-71,-71 71,-71 71,71 -71,71"
+                 fill="none" stroke="url(#starG)" stroke-width="1.1" opacity=".95"/>
+
+        <!-- inner ring of fine Najdi geometric infill (8 small triangles around center,
+             pointing outward — classic shamsiyya pattern) -->
+        <g fill="none" stroke="#b8924a" stroke-width=".5" opacity=".55">
+          <line x1="0" y1="-71" x2="0" y2="-32"/>
+          <line x1="0" y1="71" x2="0" y2="32"/>
+          <line x1="-71" y1="0" x2="-32" y2="0"/>
+          <line x1="71" y1="0" x2="32" y2="0"/>
+          <line x1="-50" y1="-50" x2="-23" y2="-23"/>
+          <line x1="50" y1="-50" x2="23" y2="-23"/>
+          <line x1="-50" y1="50" x2="-23" y2="23"/>
+          <line x1="50" y1="50" x2="23" y2="23"/>
+        </g>
+
+        <!-- central octagonal date cartouche, tighter -->
+        <polygon points="-22,-9 -9,-22 9,-22 22,-9 22,9 9,22 -9,22 -22,9"
+                 fill="rgba(10,6,8,.7)" stroke="#e8c878" stroke-width=".9"/>
+        <!-- a finer inner octagon line for depth -->
+        <polygon points="-19,-8 -8,-19 8,-19 19,-8 19,8 8,19 -8,19 -19,8"
+                 fill="none" stroke="#b8924a" stroke-width=".4" opacity=".6"/>
+
+        <!-- 8 radiating tip-triangles at each star point -->
+        <g fill="#e8c878" opacity=".9">
+          <polygon points="0,-100 2.5,-86 -2.5,-86"/>
+          <polygon points="0,100 2.5,86 -2.5,86"/>
+          <polygon points="-100,0 -86,2.5 -86,-2.5"/>
+          <polygon points="100,0 86,2.5 86,-2.5"/>
+          <polygon points="-71,-71 -62,-65 -65,-62"/>
+          <polygon points="71,-71 65,-62 62,-65"/>
+          <polygon points="-71,71 -65,62 -62,65"/>
+          <polygon points="71,71 62,65 65,62"/>
+        </g>
+
+        <!-- corner intersection dots (Najdi pattern marker beads) -->
+        <g fill="#e8c878">
+          <circle cx="0" cy="-71" r="1.4"/>
+          <circle cx="0" cy="71" r="1.4"/>
+          <circle cx="-71" cy="0" r="1.4"/>
+          <circle cx="71" cy="0" r="1.4"/>
+          <circle cx="-50" cy="-50" r="1.1"/>
+          <circle cx="50" cy="-50" r="1.1"/>
+          <circle cx="-50" cy="50" r="1.1"/>
+          <circle cx="50" cy="50" r="1.1"/>
+        </g>
+
+        <!-- ٢١ inscribed at the center -->
+        <text x="0" y="9" text-anchor="middle"
+              font-family="'Cormorant Garamond', serif" font-style="italic"
+              font-size="26" font-weight="500" fill="url(#starG)">٢١</text>
       </g>
     </svg>
 
