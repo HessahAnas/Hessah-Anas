@@ -133,7 +133,7 @@ body{
   color:#e8c878;
   background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-fill-color:transparent;
   font-size:24px;line-height:1.1;font-weight:700;
 }
 .monogram-ring .m-amp{
@@ -145,12 +145,12 @@ body{
   color:#e8c878;
   background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-  letter-spacing:.18em;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:0;
 }
 .curtain-hint{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;color:var(--sand);
-  opacity:.55;letter-spacing:.4em;font-weight:500;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;color:var(--sand);
+  opacity:.55;letter-spacing:0;font-weight:500;
   animation:fade 2.6s ease-in-out infinite;
 }
 @keyframes fade{0%,100%{opacity:.35}50%{opacity:.75}}
@@ -172,7 +172,7 @@ section{
 @media (min-width:600px){section{padding:14vh 10vw}}
 
 .eyebrow{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:.45em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:0;
   color:var(--gold-raw);text-transform:none;margin-bottom:2.4em;
   font-weight:500;
 }
@@ -180,19 +180,20 @@ section{
   color:#e8c878; /* fallback if clip fails */
   background:linear-gradient(180deg,#f4ead4 0%,#e8d9bf 25%,#e8c878 55%,#b8924a 80%,#8a6a30 100%);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-fill-color:transparent;
 }
 
 /* === HERO === */
-.hero{padding-top:10vh;min-height:100vh}
-.arch-top{margin-bottom:5vh;opacity:.85}
+.hero{padding-top:8vh;min-height:100vh;padding-bottom:4vh}
+.arch-top{margin-bottom:2vh;opacity:.85}
 .logo-img{
-  width:clamp(140px,22vw,200px);height:auto;display:block;margin:0 auto 4vh;
+  height:clamp(180px,32vh,300px);width:auto;display:block;margin:0 auto 3vh;
+  max-width:60vw;
   filter:drop-shadow(0 0 18px rgba(184,146,74,.5)) drop-shadow(0 0 4px rgba(232,200,120,.3));
 }
 .hero-eyebrow{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;letter-spacing:.4em;
-  color:var(--gold-bright);margin-bottom:4vh;font-weight:500;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:14px;letter-spacing:0;
+  color:var(--gold-bright);margin-bottom:2.5vh;font-weight:500;
 }
 .names-stack{
   display:flex;flex-direction:column;align-items:center;gap:.05em;
@@ -200,14 +201,18 @@ section{
 }
 .name{
   font-family:'Aref Ruqaa Ink','Aref Ruqaa','SF Arabic','Geeza Pro',serif;
-  font-size:clamp(72px,18vw,128px);
+  font-size:clamp(56px,14vw,120px);
   line-height:1.05;font-weight:700;
   color:#e8c878; /* fallback */
   background:linear-gradient(175deg,#f4ead4 0%,#e8d9bf 22%,#e8c878 48%,#b8924a 72%,#8a6a30 95%);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:0;
+  text-shadow:none;
+}
+/* drop-shadow goes on a wrapper to avoid breaking background-clip on iOS */
+.name-wrap{
   filter:drop-shadow(0 2px 12px rgba(184,146,74,.25));
-  letter-spacing:.02em;
 }
 .amp{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
@@ -217,14 +222,14 @@ section{
   text-shadow:0 0 18px rgba(232,200,120,.4);
 }
 .scroll-cue{
-  margin-top:8vh;display:flex;flex-direction:column;align-items:center;gap:10px;
+  margin-top:4vh;display:flex;flex-direction:column;align-items:center;gap:8px;
   opacity:.7;
 }
 .scroll-cue-text{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:10px;letter-spacing:.5em;color:var(--gold-raw);font-weight:500;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:0;color:var(--gold-raw);font-weight:500;
 }
 .scroll-cue-line{
-  width:1px;height:50px;
+  width:1px;height:35px;
   background:linear-gradient(180deg,var(--gold-bright),transparent);
   animation:bounce 2.6s ease-in-out infinite;
   transform-origin:top;
@@ -245,7 +250,7 @@ section{
   color:#e8c878;
   background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-fill-color:transparent;
 }
 .verse{
   font-family:'Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(17px,4vw,24px);
@@ -254,8 +259,8 @@ section{
 }
 .verse .ayah-mark{color:var(--gold-bright);font-size:.9em}
 .attribution{
-  margin-top:5vh;font-family:'Tajawal',sans-serif;font-size:12px;
-  letter-spacing:.4em;color:var(--gold-raw);font-weight:300;
+  margin-top:5vh;font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;
+  letter-spacing:0;color:var(--gold-raw);font-weight:400;
 }
 
 /* === HOSTS === */
@@ -264,8 +269,8 @@ section{
   background:linear-gradient(180deg,transparent,var(--gold-raw),transparent);
 }
 .host-eyebrow{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;color:var(--gold-bright);
-  letter-spacing:.4em;margin-bottom:3vh;font-weight:500;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:14px;color:var(--gold-bright);
+  letter-spacing:0;margin-bottom:3vh;font-weight:500;
 }
 .host-text{
   font-family:'Aref Ruqaa','SF Arabic','Geeza Pro',serif;font-size:clamp(18px,4vw,24px);
@@ -276,7 +281,7 @@ section{
   color:#e8c878;
   background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-text-fill-color:transparent;
 }
 
 /* === DATE / CONSTELLATION === */
@@ -287,7 +292,7 @@ section{
   width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-raw),transparent);
 }
 .section-head .head-text{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;letter-spacing:.5em;color:var(--gold-bright);font-weight:500;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:14px;letter-spacing:0;color:var(--gold-bright);font-weight:500;
 }
 .constellation{margin:2vh auto 5vh;display:block}
 .date-main{
@@ -296,7 +301,7 @@ section{
 }
 .date-sub{
   font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:clamp(12px,3vw,15px);
-  letter-spacing:.18em;color:var(--sand);opacity:.75;font-weight:400;
+  letter-spacing:0;color:var(--sand);opacity:.75;font-weight:400;
   margin-bottom:7vh;
 }
 .countdown{
@@ -310,12 +315,14 @@ section{
 .cd-num{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
   font-size:clamp(38px,9vw,52px);line-height:1;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
   margin-bottom:8px;
 }
 .cd-label{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:10px;letter-spacing:.25em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:0;
   color:var(--gold-raw);font-weight:500;
 }
 .cd-sep{
@@ -331,17 +338,17 @@ section{
   margin-left:auto;margin-right:auto;
 }
 .city{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:clamp(13px,3.4vw,16px);
-  color:var(--sand);letter-spacing:.25em;margin-bottom:1.5vh;font-weight:400;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:clamp(14px,3.4vw,16px);
+  color:var(--sand);letter-spacing:0;margin-bottom:1.5vh;font-weight:400;
 }
 .event-type{
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:11px;letter-spacing:.5em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;letter-spacing:0;
   color:var(--gold-raw);opacity:.75;margin-bottom:5vh;font-weight:500;
 }
 .map-btn{
   display:inline-block;position:relative;overflow:hidden;
   padding:14px 36px;border:1px solid var(--gold-raw);
-  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:12px;letter-spacing:.25em;
+  font-family:'Tajawal','SF Arabic','Geeza Pro',sans-serif;font-size:13px;letter-spacing:0;
   color:var(--gold-bright);text-decoration:none;background:transparent;
   font-weight:500;cursor:pointer;transition:color .5s ease;z-index:1;
 }
@@ -363,8 +370,10 @@ section{
   margin-top:7vh;width:60px;height:60px;border:1px solid var(--gold-raw);
   border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color:#e8c878;
+  background:linear-gradient(180deg,#f4ead4,#e8c878,#b8924a);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
   font-size:22px;
 }
 
@@ -490,9 +499,9 @@ section{
       <div class="hero-eyebrow reveal-on-scroll">يتشرفن بدعوتكن</div>
 
       <div class="names-stack">
-        <div class="name reveal-on-scroll">حصة</div>
+        <div class="name-wrap reveal-on-scroll"><div class="name">حصة</div></div>
         <div class="amp reveal-on-scroll">&amp;</div>
-        <div class="name reveal-on-scroll">أنس</div>
+        <div class="name-wrap reveal-on-scroll"><div class="name">أنس</div></div>
       </div>
 
       <div class="scroll-cue">
