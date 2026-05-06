@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0608">
+<title>دعوة زفاف · حصة و أنس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#3b1018;
+  --wine-deep:#2a0a10;
+  --night:#0a0608;
+  --gold-raw:#b8924a;
+  --gold-bright:#e8c878;
+  --gold-deep:#8a6a30;
+  --sand:#e8d9bf;
+  --moon:#f4ead4;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none}
+*:focus{outline:none}
+html{scroll-behavior:smooth;background:var(--night)}
+body{
+  font-family:'Tajawal',sans-serif;
+  background:var(--night);
+  color:var(--sand);
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* === COSMOS BACKGROUND === */
+.cosmos{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(59,16,24,.55), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(59,16,24,.4), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(20,8,12,.8), var(--night) 70%),
+    var(--night);
+}
+.noise{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.18;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .9 0 0 0 0 .85 0 0 0 0 .7 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.stars,.motes{position:fixed;inset:0;z-index:2;pointer-events:none}
+.star{
+  position:absolute;background:var(--gold-bright);border-radius:50%;
+  box-shadow:0 0 6px rgba(232,200,120,.8);
+  animation:twinkle var(--d,3s) ease-in-out infinite;
+  animation-delay:var(--dl,0s);
+}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.95;transform:scale(1.1)}}
+.mote{
+  position:absolute;width:2px;height:2px;background:var(--gold-bright);border-radius:50%;
+  box-shadow:0 0 4px rgba(232,200,120,.7);
+  animation:drift var(--d,22s) linear infinite;
+  animation-delay:var(--dl,0s);opacity:0;
+}
+@keyframes drift{
+  0%{transform:translateY(20vh) translateX(0);opacity:0}
+  10%{opacity:.55}
+  90%{opacity:.55}
+  100%{transform:translateY(-110vh) translateX(var(--tx,0px));opacity:0}
+}
+
+/* === SCROLL PROGRESS === */
+.progress{
+  position:fixed;top:0;left:0;height:1.5px;width:0%;z-index:1000;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold-raw));
+  box-shadow:0 0 8px rgba(232,200,120,.6);
+  transition:width .1s linear;
+}
+
+/* === CURTAIN PHASE === */
+.curtain-stage{
+  position:fixed;inset:0;z-index:900;pointer-events:auto;
+}
+.curtain-stage.open{pointer-events:none}
+.curtain{
+  position:fixed;top:0;height:100vh;width:52vw;z-index:901;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(0,0,0,.4) 0px, rgba(0,0,0,.4) 2px,
+      transparent 2px, transparent 14px,
+      rgba(0,0,0,.25) 14px, rgba(0,0,0,.25) 16px,
+      transparent 16px, transparent 32px),
+    linear-gradient(90deg, #4a1620, #5a1c2a 30%, #3b1018 60%, #2a0a14);
+  box-shadow:inset 0 0 80px rgba(0,0,0,.7), 0 0 60px rgba(0,0,0,.8);
+  transition:transform 2.4s cubic-bezier(.65,0,.35,1);
+}
+.curtain.left{left:0;border-right:2px solid var(--gold-raw)}
+.curtain.right{right:0;border-left:2px solid var(--gold-raw)}
+.curtain.left::after,.curtain.right::after{
+  content:'';position:absolute;top:0;bottom:0;width:6px;
+  background:linear-gradient(180deg, transparent, var(--gold-bright) 20%, var(--gold-raw) 50%, var(--gold-bright) 80%, transparent);
+  filter:blur(2px);opacity:.7;
+}
+.curtain.left::after{right:-3px}
+.curtain.right::after{left:-3px}
+.curtain-stage.open .curtain.left{transform:translateX(-101%)}
+.curtain-stage.open .curtain.right{transform:translateX(101%)}
+
+.tassel{position:absolute;top:8vh;width:60px;height:120px;opacity:.85}
+.tassel.l{right:-30px}
+.tassel.r{left:-30px}
+
+.curtain-center{
+  position:fixed;inset:0;z-index:902;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:24px;
+  transition:opacity 1.2s ease;
+}
+.curtain-stage.open .curtain-center{opacity:0}
+.monogram-ring{
+  width:140px;height:140px;border-radius:50%;
+  border:1.5px solid var(--gold-raw);
+  background:radial-gradient(circle, rgba(58,16,24,.6), rgba(10,6,8,.4));
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  animation:pulse 3.4s ease-in-out infinite;
+  box-shadow:0 0 30px rgba(184,146,74,.3),inset 0 0 20px rgba(184,146,74,.15);
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 30px rgba(184,146,74,.3),inset 0 0 20px rgba(184,146,74,.15)}
+  50%{transform:scale(1.04);box-shadow:0 0 50px rgba(232,200,120,.5),inset 0 0 28px rgba(232,200,120,.25)}
+}
+.monogram-ring .m-name{
+  font-family:'Aref Ruqaa Ink',serif;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-size:24px;line-height:1.1;font-weight:700;
+}
+.monogram-ring .m-amp{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--gold-bright);font-size:18px;margin:2px 0;
+}
+.curtain-title{
+  font-family:'Aref Ruqaa Ink',serif;font-size:26px;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  letter-spacing:.18em;
+}
+.curtain-hint{
+  font-family:'Tajawal',sans-serif;font-size:13px;color:var(--sand);
+  opacity:.55;font-style:italic;letter-spacing:.1em;
+  animation:fade 2.6s ease-in-out infinite;
+}
+@keyframes fade{0%,100%{opacity:.35}50%{opacity:.75}}
+
+/* === SCROLL-LOCK BEFORE OPEN === */
+body.locked{overflow:hidden;height:100vh}
+
+/* === MAIN STAGE === */
+.stage{
+  position:relative;z-index:5;
+  opacity:0;transition:opacity 1.4s ease 1.2s;
+}
+.stage.revealed{opacity:1}
+
+section{
+  min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:14vh 6vw;position:relative;text-align:center;
+}
+@media (min-width:600px){section{padding:14vh 10vw}}
+
+.eyebrow{
+  font-family:'Tajawal',sans-serif;font-size:11px;letter-spacing:.45em;
+  color:var(--gold-raw);text-transform:none;margin-bottom:2.4em;
+  font-weight:400;
+}
+.gold-text{
+  background:linear-gradient(180deg,var(--moon) 0%,var(--sand) 25%,var(--gold-bright) 55%,var(--gold-raw) 80%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* === HERO === */
+.hero{padding-top:10vh;min-height:100vh}
+.arch-top{margin-bottom:5vh;opacity:.85}
+.logo-img{
+  width:clamp(140px,22vw,200px);height:auto;display:block;margin:0 auto 4vh;
+  filter:drop-shadow(0 0 18px rgba(184,146,74,.5)) drop-shadow(0 0 4px rgba(232,200,120,.3));
+}
+.hero-eyebrow{
+  font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:.4em;
+  color:var(--gold-bright);margin-bottom:4vh;font-weight:300;
+}
+.names-stack{
+  display:flex;flex-direction:column;align-items:center;gap:.05em;
+  margin:2vh 0;
+}
+.name{
+  font-family:'Aref Ruqaa Ink',serif;
+  font-size:clamp(72px,18vw,128px);
+  line-height:1.05;font-weight:700;
+  background:linear-gradient(175deg,var(--moon) 0%,var(--sand) 22%,var(--gold-bright) 48%,var(--gold-raw) 72%,var(--gold-deep) 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 12px rgba(184,146,74,.25));
+  letter-spacing:.02em;
+}
+.amp{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(38px,9vw,64px);
+  color:var(--gold-bright);
+  margin:.05em 0;
+  text-shadow:0 0 18px rgba(232,200,120,.4);
+}
+.scroll-cue{
+  margin-top:8vh;display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:.7;
+}
+.scroll-cue-text{
+  font-family:'Tajawal',sans-serif;font-size:10px;letter-spacing:.5em;color:var(--gold-raw);
+}
+.scroll-cue-line{
+  width:1px;height:50px;
+  background:linear-gradient(180deg,var(--gold-bright),transparent);
+  animation:bounce 2.6s ease-in-out infinite;
+  transform-origin:top;
+}
+@keyframes bounce{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* === QURAN === */
+.quran{position:relative;max-width:680px;margin:0 auto}
+.bracket{
+  position:absolute;width:46px;height:46px;
+  border:1px solid var(--gold-raw);opacity:.7;
+}
+.bracket.tr{top:-10px;right:-10px;border-bottom:none;border-left:none}
+.bracket.bl{bottom:-10px;left:-10px;border-top:none;border-right:none}
+.basmala{
+  font-family:'Aref Ruqaa',serif;font-size:clamp(20px,4.4vw,28px);font-weight:700;
+  margin-bottom:5vh;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.verse{
+  font-family:'Aref Ruqaa',serif;font-size:clamp(17px,4vw,24px);
+  line-height:2.4;color:var(--sand);font-weight:400;
+  letter-spacing:.01em;
+}
+.verse .ayah-mark{color:var(--gold-bright);font-size:.9em}
+.attribution{
+  margin-top:5vh;font-family:'Tajawal',sans-serif;font-size:12px;
+  letter-spacing:.4em;color:var(--gold-raw);font-weight:300;
+}
+
+/* === HOSTS === */
+.line-vert{
+  width:1px;height:60px;margin:0 auto 5vh;
+  background:linear-gradient(180deg,transparent,var(--gold-raw),transparent);
+}
+.host-eyebrow{
+  font-family:'Aref Ruqaa',serif;font-size:14px;color:var(--gold-bright);
+  letter-spacing:.2em;margin-bottom:3vh;font-weight:400;
+}
+.host-text{
+  font-family:'Aref Ruqaa',serif;font-size:clamp(18px,4vw,24px);
+  line-height:2.2;color:var(--sand);max-width:620px;margin:0 auto;font-weight:400;
+}
+.host-text strong{
+  font-weight:700;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* === DATE / CONSTELLATION === */
+.section-head{
+  display:flex;align-items:center;gap:18px;margin-bottom:6vh;justify-content:center;
+}
+.section-head .head-line{
+  width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-raw),transparent);
+}
+.section-head .head-text{
+  font-family:'Aref Ruqaa',serif;font-size:14px;letter-spacing:.4em;color:var(--gold-bright);font-weight:400;
+}
+.constellation{margin:2vh auto 5vh;display:block}
+.date-main{
+  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(28px,7vw,42px);
+  line-height:1.3;font-weight:700;margin-bottom:1.4vh;
+}
+.date-sub{
+  font-family:'Tajawal',sans-serif;font-size:clamp(12px,3vw,15px);
+  letter-spacing:.18em;color:var(--sand);opacity:.75;font-weight:300;
+  margin-bottom:7vh;
+}
+.countdown{
+  display:flex;justify-content:center;align-items:flex-start;gap:0;
+  margin-top:2vh;flex-wrap:nowrap;
+}
+.cd-unit{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 clamp(8px,3vw,22px);min-width:60px;
+}
+.cd-num{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(38px,9vw,52px);line-height:1;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:8px;
+}
+.cd-label{
+  font-family:'Aref Ruqaa',serif;font-size:11px;letter-spacing:.18em;
+  color:var(--gold-raw);font-weight:400;
+}
+.cd-sep{
+  width:1px;align-self:stretch;margin-top:8px;height:46px;
+  background:linear-gradient(180deg,transparent,var(--gold-raw),transparent);
+}
+
+/* === VENUE === */
+.venue-arch{margin:0 auto 4vh;display:block;position:relative}
+.hall{
+  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(26px,6.4vw,34px);
+  line-height:1.35;font-weight:700;margin-bottom:1.6vh;max-width:90%;
+  margin-left:auto;margin-right:auto;
+}
+.city{
+  font-family:'Aref Ruqaa',serif;font-size:clamp(15px,3.6vw,18px);
+  color:var(--sand);letter-spacing:.18em;margin-bottom:1vh;font-weight:400;
+}
+.event-type{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;
+  color:var(--gold-raw);opacity:.8;margin-bottom:5vh;
+}
+.map-btn{
+  display:inline-block;position:relative;overflow:hidden;
+  padding:14px 36px;border:1px solid var(--gold-raw);
+  font-family:'Tajawal',sans-serif;font-size:13px;letter-spacing:.2em;
+  color:var(--gold-bright);text-decoration:none;background:transparent;
+  font-weight:400;cursor:pointer;transition:color .5s ease;z-index:1;
+}
+.map-btn::before{
+  content:'';position:absolute;inset:0;width:0;
+  background:linear-gradient(90deg,var(--gold-bright),var(--gold-raw));
+  transition:width .5s cubic-bezier(.65,0,.35,1);z-index:-1;
+  right:0;left:auto;
+}
+.map-btn:hover,.map-btn:active{color:var(--night)}
+.map-btn:hover::before,.map-btn:active::before{width:100%}
+
+/* === CLOSING === */
+.closing-text{
+  font-family:'Aref Ruqaa Ink',serif;font-size:clamp(28px,6.5vw,40px);
+  line-height:1.5;font-weight:700;
+}
+.closing-mono{
+  margin-top:7vh;width:60px;height:60px;border:1px solid var(--gold-raw);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  background:linear-gradient(180deg,var(--moon),var(--gold-bright),var(--gold-raw));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-size:22px;
+}
+
+/* === REVEAL ANIMATIONS === */
+.reveal-on-scroll{opacity:0;transform:translateY(60px);transition:opacity 1.4s cubic-bezier(.2,.8,.2,1),transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.reveal-on-scroll.in{opacity:1;transform:translateY(0)}
+.reveal-blur{opacity:0;filter:blur(20px);transform:scale(.95);transition:opacity 1.6s ease,filter 1.6s ease,transform 1.6s ease}
+.reveal-blur.in{opacity:1;filter:blur(0);transform:scale(1)}
+
+/* === AUDIO TOGGLE === */
+.audio-btn{
+  position:fixed;top:18px;left:18px;z-index:950;
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(10,6,8,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--gold-raw);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:0;transition:opacity 1s ease;
+  color:var(--gold-bright);
+}
+.audio-btn.shown{opacity:.85}
+.audio-btn:hover{opacity:1}
+.audio-btn svg{width:18px;height:18px}
+
+/* === HERO PARALLAX === */
+.hero-content{will-change:transform,opacity}
+
+/* small phone tuning */
+@media (max-width:380px){
+  .countdown{gap:0}
+  .cd-unit{padding:0 6px;min-width:54px}
+  .cd-num{font-size:34px}
+  section{padding:12vh 5vw}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- COSMOS LAYERS -->
+<div class="cosmos"></div>
+<div class="noise"></div>
+<div class="stars" id="stars"></div>
+<div class="motes" id="motes"></div>
+<div class="progress" id="progress"></div>
+
+<!-- AUDIO -->
+<audio id="audio" loop preload="none">
+  <source src="audio.mp3" type="audio/mpeg">
+</audio>
+<button class="audio-btn" id="audioBtn" aria-label="تشغيل الموسيقى">
+  <svg id="audioIconOff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 9v6h4l5 4V5l-5 4H9z"/>
+    <line x1="3" y1="3" x2="21" y2="21"/>
+  </svg>
+  <svg id="audioIconOn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <path d="M9 9v6h4l5 4V5l-5 4H9z"/>
+    <path d="M16 8c1.5 1 1.5 7 0 8"/>
+  </svg>
+</button>
+
+<!-- CURTAIN -->
+<div class="curtain-stage" id="curtainStage">
+  <div class="curtain left">
+    <svg class="tassel l" viewBox="0 0 60 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="14" r="6" fill="#b8924a" opacity=".9"/>
+      <circle cx="30" cy="14" r="3" fill="#e8c878"/>
+      <line x1="30" y1="20" x2="30" y2="40" stroke="#b8924a" stroke-width="1.2"/>
+      <path d="M20 40 Q30 38 40 40 L38 110 Q30 116 22 110 Z" fill="#8a6a30" opacity=".9"/>
+      <line x1="24" y1="44" x2="22" y2="108" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="28" y1="42" x2="26" y2="110" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="32" y1="42" x2="34" y2="110" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="36" y1="44" x2="38" y2="108" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+    </svg>
+  </div>
+  <div class="curtain right">
+    <svg class="tassel r" viewBox="0 0 60 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="14" r="6" fill="#b8924a" opacity=".9"/>
+      <circle cx="30" cy="14" r="3" fill="#e8c878"/>
+      <line x1="30" y1="20" x2="30" y2="40" stroke="#b8924a" stroke-width="1.2"/>
+      <path d="M20 40 Q30 38 40 40 L38 110 Q30 116 22 110 Z" fill="#8a6a30" opacity=".9"/>
+      <line x1="24" y1="44" x2="22" y2="108" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="28" y1="42" x2="26" y2="110" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="32" y1="42" x2="34" y2="110" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+      <line x1="36" y1="44" x2="38" y2="108" stroke="#e8c878" stroke-width=".5" opacity=".7"/>
+    </svg>
+  </div>
+  <div class="curtain-center">
+    <div class="monogram-ring">
+      <div class="m-name">حصة</div>
+      <div class="m-amp">&amp;</div>
+      <div class="m-name">أنس</div>
+    </div>
+    <div class="curtain-title">دعوة زفاف</div>
+    <div class="curtain-hint">المس للفتح</div>
+  </div>
+</div>
+
+<!-- MAIN STAGE -->
+<main class="stage" id="stage">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <!-- Najdi arch (top ornament) -->
+      <svg class="arch-top reveal-blur" width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8c878"/>
+            <stop offset="100%" stop-color="#8a6a30"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 58 L10 30 L60 5 L110 30 L110 58" fill="none" stroke="url(#goldA)" stroke-width="1.2"/>
+        <path d="M22 58 L22 35 L60 17 L98 35 L98 58" fill="none" stroke="url(#goldA)" stroke-width=".8" opacity=".7"/>
+        <polygon points="60,2 63,9 56,9" fill="#e8c878"/>
+        <circle cx="32" cy="22" r="1.4" fill="#e8c878"/>
+        <circle cx="88" cy="22" r="1.4" fill="#e8c878"/>
+        <circle cx="60" cy="32" r="1.6" fill="#b8924a"/>
+        <polygon points="42,16 44,20 40,20" fill="#b8924a"/>
+        <polygon points="78,16 80,20 76,20" fill="#b8924a"/>
+      </svg>
+
+      <img class="logo-img reveal-blur" src="logo_gold.png" alt="">
+
+      <div class="hero-eyebrow reveal-on-scroll">يتشرفن بدعوتكن</div>
+
+      <div class="names-stack">
+        <div class="name reveal-on-scroll">حصة</div>
+        <div class="amp reveal-on-scroll">&amp;</div>
+        <div class="name reveal-on-scroll">أنس</div>
+      </div>
+
+      <div class="scroll-cue">
+        <div class="scroll-cue-text">انزلي</div>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QURAN -->
+  <section>
+    <div class="quran reveal-blur">
+      <span class="bracket tr"></span>
+      <span class="bracket bl"></span>
+      <div class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="verse">
+        <span class="ayah-mark">﴿</span>
+        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم<br>
+        مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا<br>
+        وَجَعَلَ بَيْنَكُم مَّوَدَّةً<br>
+        وَرَحْمَةً
+        <span class="ayah-mark">﴾</span>
+      </div>
+      <div class="attribution">— سورة الروم —</div>
+    </div>
+  </section>
+
+  <!-- HOSTS -->
+  <section>
+    <div class="line-vert reveal-on-scroll"></div>
+    <div class="host-eyebrow reveal-on-scroll">يتشرفن بدعوتكن</div>
+    <div class="host-text reveal-on-scroll">
+      تتشرف <strong>والدة العروس</strong> و<strong>والدة العريس</strong><br>
+      بدعوتكن لحضور حفل زفاف ولديهما
+    </div>
+  </section>
+
+  <!-- DATE -->
+  <section>
+    <div class="section-head reveal-on-scroll">
+      <span class="head-line"></span>
+      <span class="head-text">التاريخ</span>
+      <span class="head-line"></span>
+    </div>
+
+    <svg class="constellation reveal-blur" width="280" height="180" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="starGlow">
+          <stop offset="0%" stop-color="#e8c878" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#e8c878" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- connecting lines -->
+      <g stroke="#b8924a" stroke-width=".5" opacity=".4" fill="none">
+        <line x1="40" y1="40" x2="100" y2="60"/>
+        <line x1="100" y1="60" x2="160" y2="35"/>
+        <line x1="160" y1="35" x2="220" y2="55"/>
+        <line x1="220" y1="55" x2="240" y2="110"/>
+        <line x1="240" y1="110" x2="180" y2="130"/>
+        <line x1="180" y1="130" x2="100" y2="135"/>
+        <line x1="100" y1="135" x2="40" y2="100"/>
+        <line x1="40" y1="100" x2="40" y2="40"/>
+      </g>
+      <!-- 21 faintly inside -->
+      <text x="140" y="105" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="60" fill="#b8924a" opacity=".15">٢١</text>
+      <!-- stars -->
+      <g>
+        <circle cx="40" cy="40" r="20" fill="url(#starGlow)"/>
+        <polygon points="40,32 42,40 48,40 42,42 40,48 38,42 32,40 38,40" fill="#e8c878"/>
+        <circle cx="100" cy="60" r="20" fill="url(#starGlow)"/>
+        <polygon points="100,52 102,60 108,60 102,62 100,68 98,62 92,60 98,60" fill="#e8c878"/>
+        <circle cx="160" cy="35" r="20" fill="url(#starGlow)"/>
+        <polygon points="160,27 162,35 168,35 162,37 160,43 158,37 152,35 158,35" fill="#e8c878"/>
+        <circle cx="220" cy="55" r="20" fill="url(#starGlow)"/>
+        <polygon points="220,47 222,55 228,55 222,57 220,63 218,57 212,55 218,55" fill="#e8c878"/>
+        <circle cx="240" cy="110" r="20" fill="url(#starGlow)"/>
+        <polygon points="240,102 242,110 248,110 242,112 240,118 238,112 232,110 238,110" fill="#e8c878"/>
+        <circle cx="180" cy="130" r="20" fill="url(#starGlow)"/>
+        <polygon points="180,122 182,130 188,130 182,132 180,138 178,132 172,130 178,130" fill="#e8c878"/>
+        <circle cx="100" cy="135" r="20" fill="url(#starGlow)"/>
+        <polygon points="100,127 102,135 108,135 102,137 100,143 98,137 92,135 98,135" fill="#e8c878"/>
+        <circle cx="40" cy="100" r="20" fill="url(#starGlow)"/>
+        <polygon points="40,92 42,100 48,100 42,102 40,108 38,102 32,100 38,100" fill="#e8c878"/>
+      </g>
+    </svg>
+
+    <div class="date-main gold-text reveal-on-scroll">الجمعة ٨ ربيع الأول</div>
+    <div class="date-sub reveal-on-scroll">١٤٤٧ هـ · ٢١ أغسطس ٢٠٢٦ م</div>
+
+    <div class="countdown reveal-on-scroll" id="countdown">
+      <div class="cd-unit"><div class="cd-num" id="cd-d">٠٠</div><div class="cd-label">يوم</div></div>
+      <div class="cd-sep"></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-h">٠٠</div><div class="cd-label">ساعة</div></div>
+      <div class="cd-sep"></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-m">٠٠</div><div class="cd-label">دقيقة</div></div>
+      <div class="cd-sep"></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-s">٠٠</div><div class="cd-label">ثانية</div></div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section>
+    <div class="section-head reveal-on-scroll">
+      <span class="head-line"></span>
+      <span class="head-text">المكان</span>
+      <span class="head-line"></span>
+    </div>
+
+    <svg class="venue-arch reveal-blur" width="260" height="320" viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="archG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e8c878"/>
+          <stop offset="60%" stop-color="#b8924a"/>
+          <stop offset="100%" stop-color="#8a6a30"/>
+        </linearGradient>
+      </defs>
+      <!-- outer arch (pointed Najdi) -->
+      <path d="M30 318 L30 130 Q30 70 130 14 Q230 70 230 130 L230 318" fill="none" stroke="url(#archG)" stroke-width="1.4"/>
+      <!-- middle arch -->
+      <path d="M50 318 L50 140 Q50 90 130 38 Q210 90 210 140 L210 318" fill="none" stroke="url(#archG)" stroke-width="1" opacity=".8"/>
+      <!-- inner arch -->
+      <path d="M70 318 L70 150 Q70 108 130 64 Q190 108 190 150 L190 318" fill="none" stroke="url(#archG)" stroke-width=".8" opacity=".55"/>
+      <!-- 8-pointed star at apex -->
+      <g transform="translate(130 14)">
+        <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#e8c878"/>
+        <polygon points="0,-8 8,0 0,8 -8,0" fill="#b8924a" opacity=".7"/>
+      </g>
+      <!-- triangular Najdi ornaments along curve -->
+      <polygon points="60,80 64,86 56,86" fill="#b8924a"/>
+      <polygon points="200,80 204,86 196,86" fill="#b8924a"/>
+      <polygon points="46,110 50,116 42,116" fill="#b8924a" opacity=".8"/>
+      <polygon points="214,110 218,116 210,116" fill="#b8924a" opacity=".8"/>
+      <polygon points="38,150 42,156 34,156" fill="#b8924a" opacity=".7"/>
+      <polygon points="222,150 226,156 218,156" fill="#b8924a" opacity=".7"/>
+      <circle cx="100" cy="50" r="1.4" fill="#e8c878"/>
+      <circle cx="160" cy="50" r="1.4" fill="#e8c878"/>
+      <!-- pulsing pin near bottom inside arch -->
+      <g transform="translate(130 230)">
+        <circle r="8" fill="none" stroke="#e8c878" stroke-width="1" opacity=".8">
+          <animate attributeName="r" from="8" to="30" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from=".8" to="0" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="8" fill="none" stroke="#e8c878" stroke-width="1" opacity=".8">
+          <animate attributeName="r" from="8" to="30" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from=".8" to="0" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="6" fill="#e8c878"/>
+        <circle r="2.5" fill="#3b1018"/>
+      </g>
+    </svg>
+
+    <div class="hall gold-text reveal-on-scroll">قاعة وسم للأفراح والمناسبات</div>
+    <div class="city reveal-on-scroll">عُنيزة · القصيم</div>
+    <div class="event-type reveal-on-scroll">حفل نسائي</div>
+    <a class="map-btn reveal-on-scroll" href="https://maps.app.goo.gl/3xAN9J2VmW4PvLxn9" target="_blank" rel="noopener">افتح الموقع على الخريطة</a>
+  </section>
+
+  <!-- CLOSING -->
+  <section>
+    <svg class="reveal-blur" width="120" height="60" viewBox="0 0 120 60" style="transform:rotate(180deg);margin-bottom:5vh" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 58 L10 30 L60 5 L110 30 L110 58" fill="none" stroke="url(#goldA)" stroke-width="1.2"/>
+      <path d="M22 58 L22 35 L60 17 L98 35 L98 58" fill="none" stroke="url(#goldA)" stroke-width=".8" opacity=".7"/>
+      <polygon points="60,2 63,9 56,9" fill="#e8c878"/>
+      <circle cx="60" cy="32" r="1.6" fill="#b8924a"/>
+    </svg>
+    <div class="line-vert reveal-on-scroll"></div>
+    <div class="closing-text gold-text reveal-on-scroll">حضوركن<br>أجمل هدية</div>
+    <div class="closing-mono reveal-on-scroll">٨</div>
+  </section>
+
+</main>
+
+<script>
+// Arabic-Indic numeral conversion
+const toAr = s => String(s).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const pad = n => String(n).padStart(2, '0');
+
+// === COSMOS: stars + motes ===
+(function(){
+  const stars = document.getElementById('stars');
+  for(let i=0;i<50;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random()*2 + 1;
+    s.style.width = s.style.height = size + 'px';
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.top = Math.random()*100 + 'vh';
+    s.style.setProperty('--d', (2 + Math.random()*4) + 's');
+    s.style.setProperty('--dl', (-Math.random()*5) + 's');
+    stars.appendChild(s);
+  }
+  const motes = document.getElementById('motes');
+  for(let i=0;i<12;i++){
+    const m = document.createElement('div');
+    m.className = 'mote';
+    m.style.left = Math.random()*100 + 'vw';
+    m.style.setProperty('--d', (18 + Math.random()*15) + 's');
+    m.style.setProperty('--dl', (-Math.random()*20) + 's');
+    m.style.setProperty('--tx', ((Math.random()-.5)*60) + 'px');
+    motes.appendChild(m);
+  }
+})();
+
+// === CURTAIN OPEN ===
+const curtainStage = document.getElementById('curtainStage');
+const stage = document.getElementById('stage');
+const audio = document.getElementById('audio');
+const audioBtn = document.getElementById('audioBtn');
+const audioOn = document.getElementById('audioIconOn');
+const audioOff = document.getElementById('audioIconOff');
+
+let opened = false;
+function openCurtains(){
+  if(opened) return;
+  opened = true;
+  curtainStage.classList.add('open');
+  document.body.classList.remove('locked');
+  // try audio (silent fail). this counts as user gesture.
+  audio.play().then(()=>{ audioOn.style.display='block'; audioOff.style.display='none'; }).catch(()=>{});
+  setTimeout(()=>{ stage.classList.add('revealed'); }, 600);
+  setTimeout(()=>{ audioBtn.classList.add('shown'); }, 1000);
+  setTimeout(()=>{ curtainStage.style.display='none'; }, 2800);
+}
+curtainStage.addEventListener('click', openCurtains);
+curtainStage.addEventListener('touchstart', openCurtains, {passive:true});
+
+// audio toggle
+audioBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  if(audio.paused){
+    audio.play().then(()=>{ audioOn.style.display='block'; audioOff.style.display='none'; }).catch(()=>{});
+  } else {
+    audio.pause();
+    audioOn.style.display='none'; audioOff.style.display='block';
+  }
+});
+
+// === SCROLL PROGRESS ===
+const progress = document.getElementById('progress');
+let ticking = false;
+function updateProgress(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  progress.style.width = pct + '%';
+  ticking = false;
+}
+window.addEventListener('scroll', ()=>{
+  if(!ticking){ requestAnimationFrame(updateProgress); ticking = true; }
+}, {passive:true});
+
+// === HERO PARALLAX ===
+const heroContent = document.querySelector('.hero-content');
+function parallax(){
+  const y = window.scrollY;
+  const vh = window.innerHeight;
+  if(y < vh){
+    const p = y / vh;
+    heroContent.style.transform = 'translateY(' + (-y * 0.35) + 'px)';
+    heroContent.style.opacity = Math.max(0, 1 - p * 1.4);
+  }
+}
+window.addEventListener('scroll', parallax, {passive:true});
+
+// === REVEAL ON SCROLL ===
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.15, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.reveal-on-scroll, .reveal-blur').forEach(el => io.observe(el));
+
+// === COUNTDOWN ===
+// Target: 21 August 2026, 21:00 KSA = 18:00 UTC
+const target = Date.UTC(2026, 7, 21, 18, 0, 0);
+const cdD = document.getElementById('cd-d');
+const cdH = document.getElementById('cd-h');
+const cdM = document.getElementById('cd-m');
+const cdS = document.getElementById('cd-s');
+
+function tick(){
+  const now = Date.now();
+  let diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000); diff -= d*86400000;
+  const h = Math.floor(diff / 3600000);  diff -= h*3600000;
+  const m = Math.floor(diff / 60000);    diff -= m*60000;
+  const s = Math.floor(diff / 1000);
+  cdD.textContent = toAr(pad(d));
+  cdH.textContent = toAr(pad(h));
+  cdM.textContent = toAr(pad(m));
+  cdS.textContent = toAr(pad(s));
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
