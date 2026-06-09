@@ -79,7 +79,7 @@ body::before{
 }
 
 /* ====== Confetti + hearts canvas ====== */
-#fx{ position:fixed; inset:0; z-index:60; pointer-events:none; }
+#fx{ position:fixed; inset:0; z-index:75; pointer-events:none; }
 
 /* =========================================================
    COVER — the sealed gift
@@ -522,7 +522,10 @@ document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 function openCard(){
   if(opened) return; opened = true;
   document.getElementById('cover').classList.add('open');
-  soundBtn.style.display = 'flex';
+  // instant pop right at the gift the moment it's tapped
+  const g = document.getElementById('gift');
+  if(g){ const c = rectCenter(g); burstAt(c.x, c.y, 36); }
+  confetti(120);
   setTimeout(()=> confetti(150), 250);
   // gentle second burst
   setTimeout(()=> confetti(80), 1100);
