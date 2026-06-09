@@ -81,22 +81,6 @@ body::before{
 /* ====== Confetti + hearts canvas ====== */
 #fx{ position:fixed; inset:0; z-index:60; pointer-events:none; }
 
-/* ====== Audio toggle ====== */
-#sound{
-  position:fixed; inset-inline-end:14px; inset-block-start:14px;
-  inset-block-start:calc(14px + env(safe-area-inset-top));
-  z-index:80;
-  width:46px; height:46px; border-radius:50%;
-  border:1px solid rgba(246,227,180,.4);
-  background:rgba(28,5,18,.55);
-  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-  color:var(--gold-bright); font-size:20px; line-height:1;
-  display:none; align-items:center; justify-content:center;
-  cursor:pointer; touch-action:manipulation;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-#sound:active{ transform:scale(.9); }
-
 /* =========================================================
    COVER — the sealed gift
    ========================================================= */
@@ -539,7 +523,6 @@ function openCard(){
   if(opened) return; opened = true;
   document.getElementById('cover').classList.add('open');
   soundBtn.style.display = 'flex';
-  startMusic();
   setTimeout(()=> confetti(150), 250);
   // gentle second burst
   setTimeout(()=> confetti(80), 1100);
