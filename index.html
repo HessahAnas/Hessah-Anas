@@ -531,54 +531,6 @@ const io = new IntersectionObserver((entries)=>{
 }, { threshold:0.18 });
 document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 
-/* =========================================================
-   Ambient music (Web Audio — no files, no copyright)
-   ========================================================= */
-let audio = { ctx:null, gain:null, on:false, timer:null };
-const soundBtn = document.getElementById('sound');
-
-function startMusic(){
-  if(audio.ctx) { audio.ctx.resume(); return; }
-  const AC = window.AudioContext || window.webkitAudioContext;
-  if(!AC) return;
-  audio.ctx = new AC();
-  audio.gain = audio.ctx.createGain();
-  audio.gain.gain.value = 0.0;
-  audio.gain.connect(audio.ctx.destination);
-  // gentle fade-in
-  audio.gain.gain.linearRampToValueAtTime(0.16, audio.ctx.currentTime + 2.2);
-
-  // soft, slow arpeggio in a warm major key (C - E - G - B - D)
-  const scale = [261.63, 329.63, 392.00, 493.88, 587.33, 392.00, 329.63];
-  let i = 0;
-  const step = ()=>{
-    if(!audio.ctx) return;
-    const t = audio.ctx.currentTime;
-    const f = scale[i % scale.length];
-    [f, f/2].forEach((freq,k)=>{
-      const o = audio.ctx.createOscillator();
-      const g = audio.ctx.createGain();
-      o.type = k===0 ? 'sine' : 'triangle';
-      o.frequency.value = freq;
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(k===0?0.5:0.25, t+0.4);
-      g.gain.exponentialRampToValueAtTime(0.001, t+2.4);
-      o.connect(g); g.connect(audio.gain);
-      o.start(t); o.stop(t+2.5);
-    });
-    i++;
-  };
-  step();
-  audio.timer = setInterval(step, 1700);
-}
-function toggleSound(){
-  audio.on = !audio.on;
-  soundBtn.textContent = audio.on ? '🔊' : '🔇';
-  if(!audio.ctx) return;
-  audio.gain.gain.cancelScheduledValues(audio.ctx.currentTime);
-  audio.gain.gain.linearRampToValueAtTime(audio.on?0.16:0.0, audio.ctx.currentTime+0.4);
-}
-soundBtn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleSound(); });
 
 /* =========================================================
    OPEN the gift
