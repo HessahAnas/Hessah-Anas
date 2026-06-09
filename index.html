@@ -534,7 +534,7 @@ document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 /* =========================================================
    Ambient music (Web Audio — no files, no copyright)
    ========================================================= */
-let audio = { ctx:null, gain:null, on:true, timer:null };
+let audio = { ctx:null, gain:null, on:false, timer:null };
 const soundBtn = document.getElementById('sound');
 
 function startMusic(){
