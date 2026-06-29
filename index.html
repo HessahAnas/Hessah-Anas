@@ -2,674 +2,672 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#CDB07F">
-<title>القضية رقم ٤٣٠ | محكمة الحب العليا</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1c0d14">
+<title>تصريح إقامة دائمة — بجانبي</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Reem+Kufi:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --kraft:#CDB07F;
-  --paper:#FAF5E9;
-  --paper-edge:#EDE3CC;
-  --ink:#21364F;
-  --ink-soft:#41587A;
-  --red:#B5342B;
-  --pencil:#7d7466;
-  --berry:#C2185B;
-  --sat:env(safe-area-inset-top,0px);
-  --sab:env(safe-area-inset-bottom,0px);
+  --night-1:#1c0d14;
+  --night-2:#2a1019;
+  --night-3:#160a10;
+  --paper:#f7f0e3;
+  --paper-2:#f1e7d4;
+  --paper-edge:#e7dac2;
+  --ink:#3a2a20;
+  --ink-soft:#7a6450;
+  --ink-faint:#a8967f;
+  --gold:#c4a24c;
+  --gold-deep:#9c7d33;
+  --at-red:#c8102e;
+  --seal:#b0132c;
+  --green:#2f7d52;
 }
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+
 body{
-  font-family:'Noto Naskh Arabic',serif;
-  color:var(--ink);
+  font-family:'Tajawal',system-ui,sans-serif;
   background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,.022) 0 2px, transparent 2px 4px),
-    radial-gradient(130% 100% at 50% 0%, #D9BE8E 0%, var(--kraft) 55%, #B79B66 100%);
-  -webkit-user-select:none;user-select:none;
-  -webkit-text-size-adjust:100%;
-  touch-action:manipulation;
+    radial-gradient(120% 80% at 50% -10%, #3a1622 0%, var(--night-2) 38%, var(--night-1) 70%, var(--night-3) 100%);
+  color:var(--paper);
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px 16px 40px;
+  overflow-x:hidden;
 }
-.kufi{font-family:'Reem Kufi',sans-serif}
+
+/* faint ambient glow, kept very quiet */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 80% 100%, rgba(196,162,76,.07), transparent 60%),
+    radial-gradient(50% 35% at 12% 8%, rgba(200,16,46,.06), transparent 60%);
+  z-index:0;
+}
+
 .stage{
-  position:fixed;inset:0;z-index:2;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:calc(18px + var(--sat)) 20px calc(22px + var(--sab));
-  opacity:0;pointer-events:none;visibility:hidden;
-  transition:opacity .7s ease;text-align:center;
+  position:relative;
+  width:100%;
+  max-width:540px;
+  z-index:1;
+  opacity:0;
+  transform:translateY(14px);
+  animation:rise .9s cubic-bezier(.2,.7,.2,1) .15s forwards;
 }
-.stage.on{opacity:1;pointer-events:auto;visibility:visible}
-.rise{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
-.rise.show{opacity:1;transform:none}
+@keyframes rise{to{opacity:1;transform:none;}}
 
-.btn{
-  font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.02rem;
-  color:var(--paper);background:linear-gradient(180deg,#2C4668,var(--ink));
-  border:none;border-radius:8px;padding:14px 38px;cursor:pointer;
-  box-shadow:0 5px 16px rgba(33,54,79,.35), inset 0 1px 0 rgba(255,255,255,.18);
-  transition:transform .15s ease;
-}
-.btn:active{transform:scale(.94)}
-
-/* ============ ACT 1: the case folder ============ */
-.folderScene{perspective:1200px;width:min(86vw,330px)}
-.folder{position:relative;border-radius:10px;cursor:pointer;transition:transform .2s ease}
-.folder:active{transform:scale(.98)}
-.folderBack{
-  background:linear-gradient(160deg,#C8A86F,#AE8E55);
-  border-radius:10px;height:430px;
-  box-shadow:0 24px 60px rgba(60,40,10,.4);
-}
-.folderTab{
-  position:absolute;top:-22px;right:24px;width:130px;height:24px;
-  background:#C8A86F;border-radius:8px 8px 0 0;
-  font-family:'Reem Kufi',sans-serif;font-size:.72rem;font-weight:700;color:#6e5526;
-  display:flex;align-items:center;justify-content:center;
-}
-.folderFront{
-  position:absolute;inset:0;border-radius:10px;z-index:2;
+/* ============ THE PERMIT DOCUMENT ============ */
+.permit{
+  position:relative;
   background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 3px, transparent 3px 6px),
-    linear-gradient(150deg,#D9BC85,#BD9C62);
-  transform-origin:right center;
-  transition:transform 1s cubic-bezier(.6,.05,.3,1);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:14px;padding:26px;
-  backface-visibility:hidden;-webkit-backface-visibility:hidden;
-  box-shadow:inset 0 0 0 1px rgba(110,85,38,.35);
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  border-radius:18px;
+  color:var(--ink);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 28px 60px -22px rgba(0,0,0,.65),
+    0 6px 20px -8px rgba(0,0,0,.4);
+  overflow:hidden;
+  border:1px solid var(--paper-edge);
 }
-.folder.open .folderFront{transform:rotateY(150deg)}
-.classified{
-  border:3px solid var(--red);color:var(--red);
-  font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.15rem;
-  padding:6px 22px;border-radius:4px;transform:rotate(-6deg);
-  background:rgba(250,245,233,.4);
-}
-.caseNo{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.05rem;color:#5d4720}
-.courtName{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink)}
-.vs{font-size:.95rem;color:#6e5526;line-height:2}
-.vs b{color:var(--red)}
-.stringBtn{
-  width:46px;height:46px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #8f6f3a, #5d4720);
-  position:relative;margin-top:6px;
-  box-shadow:inset 0 -3px 6px rgba(0,0,0,.4);
-}
-.stringBtn::after{
-  content:"";position:absolute;top:50%;left:50%;width:70px;height:70px;
-  border:2px solid rgba(70,50,15,.55);border-radius:50%;
-  transform:translate(-50%,-50%) rotate(20deg);
-  border-top-color:transparent;border-left-color:transparent;
-}
-.tapHint{font-size:.85rem;color:#6e5526;opacity:.85}
-.insidePeek{
-  position:absolute;inset:14px;border-radius:6px;background:var(--paper);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--pencil);font-size:.9rem;z-index:1;
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+/* paper grain */
+.permit::after{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(120,90,60,.05) 1px, transparent 1px);
+  background-size:4px 4px;
+  mix-blend-mode:multiply;
+  opacity:.6;
 }
 
-/* ============ documents (shared) ============ */
-.doc{
-  position:relative;width:min(90vw,360px);
-  background:linear-gradient(170deg,var(--paper),var(--paper-edge));
-  border-radius:4px;padding:28px 22px 24px;
-  box-shadow:0 16px 44px rgba(60,40,10,.35), 0 2px 0 rgba(255,255,255,.5) inset;
-  text-align:right;
+/* ---- header band ---- */
+.head{
+  position:relative;
+  padding:20px 22px 16px;
+  background:
+    linear-gradient(180deg, #241019 0%, #321420 100%);
+  color:var(--paper);
+  overflow:hidden;
 }
-.doc::before{
-  content:"";position:absolute;top:0;right:26px;width:2px;bottom:0;
-  background:rgba(181,52,43,.25);
+.head .stripe{
+  position:absolute;left:0;right:0;top:0;height:6px;
+  background:linear-gradient(90deg,var(--at-red) 0 34%, #f7f0e3 34% 66%, var(--at-red) 66% 100%);
 }
-.docHead{text-align:center;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:16px}
-.docHead .crt{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.25rem}
-.docHead .sub{font-size:.78rem;color:var(--ink-soft);margin-top:2px}
-.docTitle{
-  font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.1rem;color:var(--red);
-  margin-bottom:12px;text-align:center;
+/* subtle vienna skyline behind header */
+.skyline{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  width:100%;height:74px;
+  opacity:.16;
+  pointer-events:none;
 }
-.docBody{font-size:.98rem;line-height:2.15;color:var(--ink)}
-.docBody b{color:var(--red)}
-.charge{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
-.charge .n{
-  flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);
-  font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:.85rem;
-  display:flex;align-items:center;justify-content:center;margin-top:8px;
+.head-row{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  z-index:2;
 }
-.docFoot{
-  margin-top:14px;padding-top:10px;border-top:1px dashed rgba(33,54,79,.35);
-  font-size:.8rem;color:var(--pencil);display:flex;justify-content:space-between;
+.crest{
+  flex:0 0 auto;
+  width:50px;height:50px;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));
+}
+.head-titles{min-width:0;}
+.kingdom{
+  font-family:'Reem Kufi',sans-serif;
+  font-size:.72rem;
+  font-weight:500;
+  color:var(--gold);
+  margin:0 0 3px;
+}
+.dept{
+  font-size:.95rem;
+  font-weight:500;
+  color:#f3e8d6;
+  margin:0;
+  line-height:1.3;
+}
+.flags{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:10px;
+  margin-top:13px;
+}
+.flag-at{
+  width:34px;height:23px;border-radius:3px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.25);
+}
+.flag-eu{
+  width:34px;height:23px;border-radius:3px;
+  box-shadow:0 1px 3px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.2);
+}
+.flag-note{
+  font-size:.66rem;color:var(--ink-faint);
+  color:#c8b596;
+  font-family:'Reem Kufi',sans-serif;
 }
 
-/* ============ ACT 3: exhibits ============ */
-#act3{justify-content:flex-start;padding-top:calc(34px + var(--sat));overflow-y:auto;overflow-x:hidden;touch-action:pan-y}
-#act3 h2{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:4px}
-#act3 .sub{font-size:.88rem;color:#5d4720;margin-bottom:22px}
-.exhibits{display:flex;flex-direction:column;gap:16px;width:min(88vw,350px)}
-.exhibit{
-  position:relative;background:var(--paper);border-radius:4px;
-  padding:16px 16px 14px;cursor:pointer;text-align:right;
-  box-shadow:0 8px 22px rgba(60,40,10,.3);
-  transform:rotate(var(--tilt,0deg));
-  transition:transform .2s ease;
+/* ---- title block ---- */
+.title-wrap{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:22px 20px 6px;
 }
-.exhibit:active{transform:rotate(var(--tilt,0deg)) scale(.97)}
-.exhibit .clip{
-  position:absolute;top:-12px;right:50%;transform:translateX(50%);
-  width:54px;height:18px;background:linear-gradient(180deg,#9aa3ad,#6b7480);
-  border-radius:4px 4px 2px 2px;box-shadow:0 2px 4px rgba(0,0,0,.25);
+.eyebrow{
+  font-family:'Reem Kufi',sans-serif;
+  font-size:.72rem;
+  color:var(--gold-deep);
+  margin:0 0 7px;
 }
-.exhibit .tag{
-  display:inline-block;font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:.72rem;
-  color:var(--paper);background:var(--ink);border-radius:3px;padding:3px 10px;margin-bottom:8px;
+.title{
+  font-family:'Aref Ruqaa',serif;
+  font-weight:700;
+  font-size:2.15rem;
+  line-height:1.2;
+  margin:0;
+  color:var(--ink);
 }
-.exhibit .exTitle{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1rem;margin-bottom:4px}
-.exhibit .exBody{font-size:.9rem;line-height:2;color:var(--ink-soft);max-height:0;overflow:hidden;transition:max-height .5s ease}
-.exhibit.open .exBody{max-height:300px}
-.exhibit .exBody b{color:var(--red)}
-.exhibit .more{font-size:.75rem;color:var(--pencil)}
-.exhibit.open .more{display:none}
-.clockWrap{display:flex;justify-content:center;margin:8px 0 4px}
+.subtitle{
+  font-size:.98rem;
+  color:var(--ink-soft);
+  margin:8px 0 0;
+}
 
-/* ============ ACT 4: deliberation ============ */
-#act4 h2{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.35rem;margin-bottom:18px}
-.scaleWrap{margin:6px 0 22px;animation:swing 3s ease-in-out infinite;transform-origin:50% 12%}
-@keyframes swing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
-.ticker{
-  width:min(88vw,350px);background:rgba(250,245,233,.75);
-  border:1px solid rgba(110,85,38,.35);border-radius:8px;
-  padding:16px 18px;text-align:right;min-height:200px;
+.rule{
+  height:1px;margin:16px 22px 0;
+  background:linear-gradient(90deg,transparent,var(--paper-edge) 18%,var(--paper-edge) 82%,transparent);
 }
-.ticker .line{
-  font-size:.93rem;line-height:1.9;margin-bottom:8px;color:var(--ink);
-  opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;
-  display:flex;gap:8px;align-items:flex-start;
-}
-.ticker .line.show{opacity:1;transform:none}
-.ticker .line .dot{flex:none;margin-top:10px;width:7px;height:7px;border-radius:50%;background:var(--ink-soft)}
-.ticker .line.alert{color:var(--red);font-weight:700}
-.ticker .line.alert .dot{background:var(--red)}
-.objection{
-  position:fixed;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;
-  background:rgba(181,52,43,.92);opacity:0;pointer-events:none;transition:opacity .25s ease;
-}
-.objection.on{opacity:1}
-.objection span{
-  font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:2.6rem;color:var(--paper);
-  transform:rotate(-5deg);
-}
-/* defense card */
-.defense{
-  position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;
-  background:rgba(40,28,8,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  opacity:0;pointer-events:none;transition:opacity .4s ease;padding:22px;
-}
-.defense.on{opacity:1;pointer-events:auto}
-.defCard{
-  background:linear-gradient(170deg,var(--paper),var(--paper-edge));
-  width:min(88vw,350px);border-radius:6px;padding:26px 22px;text-align:center;
-  box-shadow:0 24px 60px rgba(0,0,0,.45);
-  transform:scale(.85);transition:transform .35s cubic-bezier(.2,1.4,.4,1);
-}
-.defense.on .defCard{transform:scale(1)}
-.defCard .dTag{
-  display:inline-block;font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:.78rem;
-  color:var(--paper);background:var(--berry);border-radius:3px;padding:4px 14px;margin-bottom:10px;
-}
-.defCard h3{font-family:'Reem Kufi',sans-serif;font-size:1.2rem;margin-bottom:8px;color:var(--berry)}
-.defCard p{font-size:.98rem;line-height:2.15}
-.defCard p b{color:var(--berry)}
-.berryRow{font-size:2rem;margin:10px 0 4px;letter-spacing:6px}
-.defCard .btn{margin-top:14px}
 
-/* ============ ACT 5: gavel + verdict ============ */
-#act5{overflow-y:auto;overflow-x:hidden;touch-action:pan-y}
-#act5 h2{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.3rem;line-height:1.8;margin-bottom:4px}
-#act5 .sub{font-size:.9rem;color:#5d4720;margin-bottom:10px}
-.gavelWrap{position:relative;width:200px;height:170px;cursor:pointer;touch-action:none;-webkit-touch-callout:none;margin-bottom:6px}
-.gavelSvg{position:absolute;inset:0;transform-origin:78% 30%;transition:transform .1s ease}
-.gavelWrap.bang .gavelSvg{animation:bang .28s ease}
-@keyframes bang{
-  0%{transform:rotate(0deg)}
-  45%{transform:rotate(38deg)}
-  100%{transform:rotate(0deg)}
+/* ---- letter body ---- */
+.body{
+  position:relative;z-index:2;
+  padding:18px 24px 6px;
 }
-.bangCount{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);min-height:1.6em}
-.shock{
-  position:absolute;bottom:18px;left:24px;width:60px;height:60px;border-radius:50%;
-  border:3px solid var(--red);opacity:0;transform:scale(.3);pointer-events:none;
+.letter{
+  font-size:1.04rem;
+  line-height:2;
+  color:#43342a;
 }
-.gavelWrap.bang .shock{animation:shock .4s ease}
-@keyframes shock{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.6)}}
-.shake{animation:shk .3s ease}
-@keyframes shk{
-  0%,100%{transform:translate(0,0)}
-  25%{transform:translate(-5px,3px)}
-  50%{transform:translate(5px,-3px)}
-  75%{transform:translate(-3px,2px)}
+.letter p{margin:0 0 13px;}
+.letter .lead{font-weight:500;}
+.sorry{
+  font-family:'Aref Ruqaa',serif;
+  font-size:1.18rem;
+  color:var(--seal);
 }
-.verdict{
-  position:relative;width:min(90vw,362px);
-  background:linear-gradient(170deg,var(--paper),var(--paper-edge));
-  border-radius:4px;padding:26px 22px 24px;text-align:center;
-  box-shadow:0 18px 50px rgba(60,40,10,.4);
-  opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;
-  display:none;
+.grant{
+  margin:6px 24px 4px;
+  padding:14px 16px;
+  background:linear-gradient(180deg,#fbf6ea,#f4ead4);
+  border:1px solid var(--paper-edge);
+  border-radius:12px;
+  font-size:1.04rem;
+  line-height:1.9;
+  color:#43342a;
+  position:relative;z-index:2;
 }
-.verdict.show{opacity:1;transform:none}
-.verdict .vHead{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.2rem;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:12px}
-.verdict .vBody{font-size:.97rem;line-height:2.2}
-.verdict .vBody .big{font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:1.7rem;color:var(--red);display:block;margin:8px 0 4px}
-.verdict .vBody b{color:var(--red)}
-.verdict .reasons{
-  text-align:right;background:rgba(33,54,79,.05);border-radius:6px;
-  padding:12px 14px;margin:12px 0 4px;font-size:.9rem;line-height:2.1;
-}
-.verdict .reasons b{color:var(--berry)}
-.vStamp{
-  position:absolute;top:54px;left:14px;width:108px;height:108px;
-  opacity:0;transform:scale(3) rotate(28deg);pointer-events:none;mix-blend-mode:multiply;
-}
-.vStamp.slam{animation:vslam .45s cubic-bezier(.3,1.6,.4,1) forwards}
-@keyframes vslam{
-  0%{opacity:0;transform:scale(3) rotate(28deg)}
-  60%{opacity:1;transform:scale(.92) rotate(12deg)}
-  100%{opacity:.9;transform:scale(1) rotate(12deg)}
-}
-#finalLove{margin-top:18px;font-size:1.05rem;line-height:2;opacity:0;transition:opacity 1s ease .3s;color:var(--ink)}
-#finalLove.show{opacity:1}
-#finalLove b{color:var(--berry);font-family:'Reem Kufi',sans-serif;font-size:1.2rem}
-#replay{
-  margin-top:14px;background:none;border:1.5px solid rgba(33,54,79,.45);color:var(--ink);
-  border-radius:8px;padding:9px 24px;font-family:'Reem Kufi',sans-serif;font-weight:700;
-  font-size:.85rem;cursor:pointer;opacity:0;transition:opacity 1s ease .6s;
-}
-#replay.show{opacity:.9}
-#berryCanvas{position:fixed;inset:0;pointer-events:none;z-index:6}
+.grant b{color:var(--gold-deep);}
 
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:.01ms !important;transition-duration:.2s !important}
-  .scaleWrap{animation:none}
+/* ---- perforation ---- */
+.perf{
+  position:relative;z-index:2;
+  height:26px;margin:18px 0 0;
 }
-@media (max-height:660px){
-  .folderBack{height:370px}
-  .doc{padding:22px 18px 20px}
-  .docBody{font-size:.92rem;line-height:2}
-  .gavelWrap{width:170px;height:140px}
+.perf::before{
+  content:"";position:absolute;left:12px;right:12px;top:50%;
+  border-top:2px dashed var(--paper-edge);
+}
+.perf .notch{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:22px;height:22px;border-radius:50%;
+  background:var(--night-2);
+  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+}
+.perf .notch.l{left:-11px;}
+.perf .notch.r{right:-11px;}
+
+/* ---- stub: seat assignment ---- */
+.stub{
+  position:relative;z-index:2;
+  padding:8px 24px 22px;
+}
+.stub-h{
+  font-family:'Reem Kufi',sans-serif;
+  font-size:.82rem;
+  color:var(--gold-deep);
+  margin:0 0 12px;
+  display:flex;align-items:center;gap:8px;
+}
+.stub-h::after{content:"";flex:1;height:1px;background:var(--paper-edge);}
+.fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 18px;
+}
+.field{min-width:0;}
+.field .k{
+  font-size:.72rem;color:var(--ink-faint);
+  margin:0 0 2px;
+}
+.field .v{
+  font-size:1.02rem;font-weight:700;color:var(--ink);
+  margin:0;line-height:1.4;
+}
+.field .v.hl{color:var(--seal);}
+.status-row{
+  grid-column:1 / -1;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  margin-top:6px;padding-top:12px;
+  border-top:1px solid var(--paper-edge);
+}
+.status-k{font-size:.84rem;color:var(--ink-soft);}
+.chip{
+  font-family:'Reem Kufi',sans-serif;
+  font-size:.82rem;font-weight:600;
+  padding:5px 13px;border-radius:999px;
+  background:#f0e3cb;color:var(--ink-soft);
+  border:1px solid var(--paper-edge);
+  transition:all .5s ease;
+}
+.chip.approved{
+  background:rgba(47,125,82,.12);
+  color:var(--green);
+  border-color:rgba(47,125,82,.35);
+}
+
+/* ---- revealed austria line ---- */
+.reveal{
+  position:relative;z-index:2;
+  max-height:0;opacity:0;overflow:hidden;
+  margin:0 24px;
+  transition:max-height .7s ease, opacity .6s ease .15s, margin .7s ease;
+}
+.reveal.open{
+  max-height:340px;opacity:1;margin:0 24px 4px;
+}
+.reveal-inner{
+  padding:14px 16px;
+  border-radius:12px;
+  background:linear-gradient(180deg,#fbf6ea,#f5ebd6);
+  border:1px dashed var(--gold);
+  font-size:1.03rem;line-height:1.95;color:#43342a;
+}
+.reveal-inner .pin{color:var(--at-red);font-weight:700;}
+
+/* ---- stamp zone ---- */
+.actions{
+  position:relative;z-index:2;
+  padding:16px 24px 10px;
+  text-align:center;
+}
+.stamp-btn{
+  font-family:'Reem Kufi',sans-serif;
+  font-size:1rem;font-weight:600;
+  color:#fff;
+  background:linear-gradient(180deg,#c8102e,#9c0f24);
+  border:none;border-radius:14px;
+  padding:14px 26px;
+  cursor:pointer;
+  box-shadow:0 10px 22px -8px rgba(176,19,44,.6);
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .15s ease, box-shadow .2s ease, opacity .3s ease;
+}
+.stamp-btn:hover{transform:translateY(-1px);}
+.stamp-btn:active{transform:translateY(1px) scale(.99);}
+.stamp-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+.stamp-btn.gone{opacity:0;transform:scale(.9);pointer-events:none;height:0;padding:0;margin:0;overflow:hidden;}
+.hint{
+  font-size:.78rem;color:var(--ink-faint);
+  margin:10px 0 0;
+}
+
+/* ---- signature ---- */
+.sign{
+  position:relative;z-index:2;
+  padding:6px 24px 26px;
+  text-align:left;
+}
+.sign .by{font-size:.84rem;color:var(--ink-soft);margin:0 0 3px;}
+.sign .name{
+  font-family:'Aref Ruqaa',serif;
+  font-size:1.5rem;color:var(--ink);
+  margin:0;
+}
+
+/* ---- the big approval stamp overlay ---- */
+.seal-overlay{
+  position:absolute;
+  z-index:5;
+  top:42%;left:50%;
+  width:200px;height:200px;
+  transform:translate(-50%,-50%) rotate(-16deg) scale(2.6);
+  opacity:0;
+  pointer-events:none;
+  color:var(--seal);
+}
+.seal-overlay.fire{
+  animation:slam .55s cubic-bezier(.3,1.3,.5,1) forwards;
+}
+@keyframes slam{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(-16deg) scale(2.6);}
+  60%{opacity:.96;transform:translate(-50%,-50%) rotate(-13deg) scale(.92);}
+  78%{transform:translate(-50%,-50%) rotate(-13deg) scale(1.04);}
+  100%{opacity:.92;transform:translate(-50%,-50%) rotate(-12deg) scale(1);}
+}
+.seal-overlay svg{width:100%;height:100%;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.18));}
+
+.shake{animation:shake .4s ease;}
+@keyframes shake{
+  0%,100%{transform:translateY(0);}
+  20%{transform:translate(-3px,1px) rotate(-.25deg);}
+  40%{transform:translate(3px,-1px) rotate(.25deg);}
+  60%{transform:translate(-2px,1px);}
+  80%{transform:translate(2px,0);}
+}
+
+/* spark layer */
+.sparks{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:visible;}
+.spark{
+  position:absolute;top:42%;left:50%;
+  width:8px;height:8px;border-radius:50%;
+  will-change:transform,opacity;
+}
+
+.foot{
+  text-align:center;
+  margin:18px auto 0;
+  font-family:'Reem Kufi',sans-serif;
+  font-size:.74rem;
+  color:rgba(247,240,227,.4);
+}
+
+@media (max-width:380px){
+  .title{font-size:1.85rem;}
+  .fields{grid-template-columns:1fr;}
+  .seal-overlay{width:168px;height:168px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .stage{animation:none;opacity:1;transform:none;}
+  .seal-overlay.fire{animation:none;opacity:.92;
+    transform:translate(-50%,-50%) rotate(-12deg) scale(1);}
+  .shake{animation:none;}
+  .spark{display:none;}
 }
 </style>
 </head>
 <body>
+<div class="stage" id="stage">
+  <div class="permit" id="permit">
 
-<!-- ============ ACT 1: FOLDER ============ -->
-<section class="stage on" id="act1">
-  <div class="folderScene rise">
-    <div class="folder" id="folder">
-      <div class="folderTab">وزارة شؤون القلب</div>
-      <div class="folderBack"></div>
-      <div class="insidePeek">جاري فتح الملف...</div>
-      <div class="folderFront">
-        <div class="classified">سري للغاية</div>
-        <div class="courtName">محكمة الحب العليا</div>
-        <div class="caseNo">القضية رقم: ٤٣٠ / ٢٠٢٦</div>
-        <div class="vs">المدّعي\القاضي: <b>زوجٌ حنووون صبر كثير</b><br>ضد المتهمة: <b>حصة</b><br><span style="font-size:.8rem;opacity:.8">(النائمة حتى إشعار آخر)</span></div>
-        <div class="stringBtn"></div>
-        <div class="tapHint">اضغطي لفتح الملف ⚖️</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ACT 2: CHARGE SHEET ============ -->
-<section class="stage" id="act2">
-  <div class="doc rise">
-    <div class="docHead">
-      <div class="crt kufi">محكمة الحب العليا</div>
-      <div class="sub">الدائرة الزوجية الأولى — قسم قضايا النوم</div>
-    </div>
-    <div class="docTitle">لائحة الاتهام</div>
-    <div class="docBody">
-      <div class="charge"><div class="n">١</div><div>السهر المبالغ فيه!!!!!! <b>بدون تصريح رسمي</b> من الجهات الزوجية المختصة.</div></div>
-      <div class="charge"><div class="n">٢</div><div>النوم نومة أهل الكهف، والاستيقاظ في تمام الساعة <b>٤:٣٠ مساءً</b> والشمس توشك على المغادرة.</div></div>
-      <div class="charge"><div class="n">٣</div><div>ترك الزوج الحنوووون يقضي نهاره في العمل و هو يشعر بالخوف بسبب عدم رد الزوجة على الرسائل ، <b>يحاتي مسكييين</b> و كل شوي يفكر انها إن شاء الله بخير.</div></div>
-    </div>
-    <div class="docFoot"><span>المحرر: قلب المدّعي</span><span>التاريخ: اليوم المشؤوم</span></div>
-  </div>
-  <button class="btn rise" id="toExhibits" style="margin-top:24px">عرض الأدلة ←</button>
-</section>
-
-<!-- ============ ACT 3: EXHIBITS ============ -->
-<section class="stage" id="act3">
-  <h2 class="rise">أدلة الإثبات</h2>
-  <p class="sub rise">المسي كل دليل للاطلاع عليه</p>
-  <div class="exhibits rise">
-    <div class="exhibit" style="--tilt:-1.2deg" data-ex="0">
-      <div class="clip"></div>
-      <div class="tag">المستند ( أ )</div>
-      <div class="exTitle">الساعة التي وثّقت الجريمة</div>
-      <div class="exBody">
-        <div class="clockWrap">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle cx="55" cy="55" r="50" fill="#FAF5E9" stroke="#21364F" stroke-width="4"/>
-            <circle cx="55" cy="55" r="3" fill="#B5342B"/>
-            <g stroke="#21364F" stroke-width="2">
-              <line x1="55" y1="9" x2="55" y2="17"/><line x1="55" y1="93" x2="55" y2="101"/>
-              <line x1="9" y1="55" x2="17" y2="55"/><line x1="93" y1="55" x2="101" y2="55"/>
-            </g>
-            <line x1="55" y1="55" x2="76" y2="74" stroke="#21364F" stroke-width="5" stroke-linecap="round"/>
-            <line x1="55" y1="55" x2="55" y2="92" stroke="#B5342B" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        وقت الاستيقاظ الموثق: <b>٤:٣٠ مساءً</b>.<br>للعلم: في هذا الوقت، فيه ناس خلصوا دوامهم ورجعوا بيوتهم.
-      </div>
-      <div class="more">اضغطي للاطلاع ▾</div>
-    </div>
-    <div class="exhibit" style="--tilt:1.4deg" data-ex="1">
-      <div class="clip"></div>
-      <div class="tag">المستند ( ب )</div>
-      <div class="exTitle">سجل محاولات الإيقاظ من (مصادر داخلية)</div>
-      <div class="exBody">
-        عدد مرات النداء باسمها: <b>١٧ مرة</b>.<br>
-        الردود المسجلة: همهمة غير مفهومة (×١٢)، قلبة على الجنب الثاني (×٤)، وسحب اللحاف فوق الرأس (×١ — حاسمة).
-      </div>
-      <div class="more">اضغطي للاطلاع ▾</div>
-    </div>
-    <div class="exhibit" style="--tilt:-0.8deg" data-ex="2">
-      <div class="clip"></div>
-      <div class="tag">المستند ( ج )</div>
-      <div class="exTitle">إفادة الشاهد الوحيد (مجهول لاكن موثوق)</div>
-      <div class="exBody">
-        «دخلت الغرفة الساعة ١٢ الظهر. الستاير مسكّرة، الجو معتم، والمتهمة في <b>سبات عميق وحالة سلام داخلي</b> ما شفتها عند أحد. انسحبت بهدوء لأن منظرها وهي نايمة... يكسر الخاطر..... بس مب لدرجة انه تخلي زوجها الحنوووون يخاف عليه!!!!.»
-      </div>
-      <div class="more">اضغطي للاطلاع ▾</div>
-    </div>
-  </div>
-  <button class="btn" id="toCourt" style="margin-top:24px;visibility:hidden;opacity:0;transition:opacity .8s ease">بدء المحاكمة ⚖️</button>
-</section>
-
-<!-- ============ ACT 4: DELIBERATION ============ -->
-<section class="stage" id="act4">
-  <h2 class="rise">هيئة المحكمة تتداول...</h2>
-  <div class="scaleWrap rise">
-    <svg width="120" height="110" viewBox="0 0 120 110">
-      <line x1="60" y1="12" x2="60" y2="86" stroke="#21364F" stroke-width="4"/>
-      <line x1="14" y1="22" x2="106" y2="22" stroke="#21364F" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="60" cy="12" r="5" fill="#B5342B"/>
-      <path d="M14,22 L4,52 L24,52 Z" fill="none" stroke="#21364F" stroke-width="3"/>
-      <path d="M4,52 A10,8 0 0 0 24,52" fill="#21364F"/>
-      <path d="M106,22 L96,52 L116,52 Z" fill="none" stroke="#21364F" stroke-width="3"/>
-      <path d="M96,52 A10,8 0 0 0 116,52" fill="#21364F"/>
-      <rect x="42" y="86" width="36" height="10" rx="3" fill="#21364F"/>
-    </svg>
-  </div>
-  <div class="ticker rise" id="ticker"></div>
-</section>
-
-<div class="objection" id="objection"><span>اعتراض !!</span></div>
-
-<div class="defense" id="defense">
-  <div class="defCard">
-    <div class="dTag">دليل دفاع جديد — المستند ( د )</div>
-    <h3>قضية التوت المسروق</h3>
-    <div class="berryRow">🍓 🍓 ❌ 🍓</div>
-    <p>
-      يُثبت الدفاع أن المتهمة تعرضت مؤخرًا لفاجعة أليمة:<br>
-      <b>سرقة حبات التوت من كيكتها</b>،
-      وهي تنظر، وما قدرت تسوي شي.<br>
-      وترى هيئة الدفاع أن من ذاق مرارة فقد التوت..
-      <b>لا يحتمل قلبه عقوبة إضافية.</b>
-    </p>
-    <button class="btn" id="defenseOk">المحكمة تأخذ علمًا 📋</button>
-  </div>
-</div>
-
-<!-- ============ ACT 5: GAVEL + VERDICT ============ -->
-<section class="stage" id="act5">
-  <div id="gavelPhase">
-    <h2 class="rise">وصلت هيئة المحكمة إلى قرار</h2>
-    <p class="sub rise">بحكم أن القضية قضيتك.. الشرف لك لطرق المطرقة و كشف الحكم:</p>
-    <div class="gavelWrap rise" id="gavel">
-      <svg class="gavelSvg" width="200" height="170" viewBox="0 0 200 170">
-        <rect x="120" y="20" width="34" height="64" rx="8" fill="#21364F" transform="rotate(35 137 52)"/>
-        <rect x="84" y="58" width="64" height="14" rx="7" fill="#41587A" transform="rotate(35 116 65)"/>
-        <rect x="36" y="128" width="100" height="12" rx="6" fill="#21364F"/>
-        <rect x="50" y="118" width="72" height="12" rx="6" fill="#41587A"/>
+    <!-- HEADER -->
+    <div class="head">
+      <div class="stripe"></div>
+      <!-- subtle vienna skyline -->
+      <svg class="skyline" viewBox="0 0 540 74" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+        <g fill="#f7f0e3">
+          <!-- ferris wheel (riesenrad) -->
+          <circle cx="70" cy="40" r="22" fill="none" stroke="#f7f0e3" stroke-width="2"/>
+          <line x1="70" y1="18" x2="70" y2="62" stroke="#f7f0e3" stroke-width="1.4"/>
+          <line x1="48" y1="40" x2="92" y2="40" stroke="#f7f0e3" stroke-width="1.4"/>
+          <line x1="54" y1="24" x2="86" y2="56" stroke="#f7f0e3" stroke-width="1.4"/>
+          <line x1="54" y1="56" x2="86" y2="24" stroke="#f7f0e3" stroke-width="1.4"/>
+          <rect x="63" y="62" width="14" height="12"/>
+          <!-- schönbrunn-ish dome -->
+          <rect x="150" y="48" width="70" height="26"/>
+          <path d="M170 48 q15 -20 30 0 z"/>
+          <rect x="183" y="22" width="4" height="12"/>
+          <!-- stephansdom spire -->
+          <rect x="300" y="40" width="26" height="34"/>
+          <path d="M313 6 L326 40 L300 40 Z"/>
+          <rect x="311" y="0" width="4" height="8"/>
+          <!-- rooftops -->
+          <path d="M360 74 V56 l16 -12 16 12 V74 Z"/>
+          <path d="M400 74 V60 l14 -10 14 10 V74 Z"/>
+          <rect x="445" y="50" width="40" height="24"/>
+          <path d="M445 50 l20 -12 20 12 Z"/>
+          <rect x="500" y="54" width="30" height="20"/>
+        </g>
       </svg>
-      <div class="shock"></div>
-    </div>
-    <div class="bangCount rise" id="bangCount">اطرقي المطرقة ٣ مرات لإعلان الحكم 🔨</div>
-  </div>
 
-  <div class="verdict" id="verdict">
-    <div class="vHead kufi">منطوق الحكم النهائي</div>
-    <div class="vBody">
-      باسم الحب، وبسلطة القلب الممنوحة له،<br>حكم القاضي (زوج حصة المحظوظ حضوريًا:
-      <span class="big">براءة المتهمة حصة</span>
-      براءة تامة.. مع <b>عفو شامل</b> عن كل سهرات الماضي والمستقبل
-      <div class="reasons">
-        <b>حيثيات الحكم:</b><br>
-        أولًا: تعاطفًا مع المتهمة في <b>قضية التوت المسروق</b>، فالقلب المجروح لا يُحاكم.<br>
-        ثانيًا: لثبوت عيب قانوني جوهري في القاضي نفسه: <b>أنه يحبها حبًا يفسد العدالة كلها.</b>
+      <div class="head-row">
+        <!-- neutral visa crest (NOT a real agency logo) -->
+        <svg class="crest" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="none" stroke="#c4a24c" stroke-width="2"/>
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#c4a24c" stroke-width="1" stroke-dasharray="2 3"/>
+          <path d="M32 16 C24 26 24 38 32 48 C40 38 40 26 32 16 Z" fill="#c8102e"/>
+          <path d="M16 32 H48" stroke="#c4a24c" stroke-width="1.4"/>
+          <circle cx="32" cy="32" r="4.4" fill="#f7f0e3"/>
+        </svg>
+        <div class="head-titles">
+          <p class="kingdom">مملكة القلب · KINGDOM OF THE HEART</p>
+          <p class="dept">إدارة الهجرة والإقامة الأبدية</p>
+        </div>
       </div>
-      <span style="font-size:.8rem;color:#7d7466">الحكم نهائي وبات وغير قابل للاستئناف (ولا احد يقدر يغيره)</span>
-    </div>
-    <svg class="vStamp" id="vStamp" viewBox="0 0 120 120">
-      <defs><path id="stCir" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
-      <circle cx="60" cy="60" r="54" fill="none" stroke="#B5342B" stroke-width="4"/>
-      <circle cx="60" cy="60" r="33" fill="none" stroke="#B5342B" stroke-width="2"/>
-      <text fill="#B5342B" font-size="12" font-weight="bold" font-family="'Reem Kufi',sans-serif">
-        <textPath href="#stCir">عَفو شامِل ✦ مِن قَلبٍ مُنحاز ✦ بِالكامِل ✦</textPath>
-      </text>
-      <text x="60" y="68" text-anchor="middle" fill="#B5342B" font-size="20" font-weight="bold" font-family="'Reem Kufi',sans-serif">بريئة</text>
-    </svg>
-  </div>
-  <p id="finalLove">ونامي براحتك يا قلبي..<br>وعوضك عن التوت <b>عندي أنا 🍓</b></p>
-  <button id="replay">إعادة المحاكمة ↻</button>
-</section>
 
-<canvas id="berryCanvas"></canvas>
+      <div class="flags">
+        <!-- austria flag -->
+        <span class="flag-at" aria-label="علم النمسا">
+          <svg viewBox="0 0 3 2" width="100%" height="100%" preserveAspectRatio="none">
+            <rect width="3" height="2" fill="#ed2939"/>
+            <rect width="3" height="0.667" y="0.667" fill="#fff"/>
+          </svg>
+        </span>
+        <!-- eu flag -->
+        <span class="flag-eu" aria-label="علم الاتحاد الأوروبي">
+          <svg viewBox="0 0 60 40" width="100%" height="100%">
+            <rect width="60" height="40" fill="#003399"/>
+            <g id="eu-stars" fill="#ffcc00"></g>
+          </svg>
+        </span>
+        <span class="flag-note">النمسا · الاتحاد الأوروبي</span>
+      </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="title-wrap">
+      <p class="eyebrow">PERMANENT RESIDENCE PERMIT</p>
+      <h1 class="title">تصريحُ إقامةٍ دائمة</h1>
+      <p class="subtitle">المقعد المجاور — مدى الحياة</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- LETTER -->
+    <div class="body">
+      <div class="letter">
+        <p class="sorry"> حصتي الغالية</p>
+        <p>قُربك مني ما يحتاج تأشيرة، ولا دور، ولا انتظار.</p>
+      </div>
+    </div>
+
+    <div class="grant">
+      عشان كذا، أصدرت لك اليوم هذا التصريح:<br>
+      المقعد اللي <b>بجانبي</b>  لك وحدك، محجوز باسمك، ما ينتهي، ومحد ياخذه.
+    </div>
+
+    <!-- PERFORATION -->
+    <div class="perf">
+      <span class="notch l"></span>
+      <span class="notch r"></span>
+    </div>
+
+    <!-- STUB / SEAT ASSIGNMENT -->
+    <div class="stub">
+      <p class="stub-h">بيانات المقعد</p>
+      <div class="fields">
+        <div class="field">
+          <p class="k">المقعد</p>
+          <p class="v hl">بجانبي مباشرة</p>
+        </div>
+        <div class="field">
+          <p class="k">المدّة</p>
+          <p class="v">مدى الحياة</p>
+        </div>
+        <div class="field">
+          <p class="k">تاريخ الانتهاء</p>
+          <p class="v">لا ينتهي</p>
+        </div>
+        <div class="field">
+          <p class="k">مقاعد متاحة لغيرك</p>
+          <p class="v">٠</p>
+        </div>
+        <div class="field">
+          <p class="k">تاريخ الطلب</p>
+          <p class="v">٢٩ / ٠٦ / ٢٠٢٦</p>
+        </div>
+        <div class="field">
+          <p class="k">جهة الإصدار</p>
+          <p class="v">قلبي</p>
+        </div>
+
+        <div class="status-row">
+          <span class="status-k">حالة الطلب</span>
+          <span class="chip" id="chip">قيد المراجعة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVEAL ON STAMP -->
+    <div class="reveal" id="reveal">
+      <div class="reveal-inner">
+        وفي النمسا ما فيه ممر ولا انتظار:<br>
+        في الطيارة <span class="pin">جنبي</span>، وفي السيارة <span class="pin">جنبي</span>،
+        وفوق في جبال النمسا <span class="pin">جنبي</span>.<br>
+        كل مقعد هناك… مكتوب عليه اسمك.<br><br>
+	الرجاء إرفاق صورة من الموافقة لزوجك أنس.
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="stamp-btn" id="stampBtn" aria-label="اختم الموافقة على التصريح">اختم الموافقة ❤</button>
+      <p class="hint" id="hint">اضغطي الزر عشان تختمين التصريح</p>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="sign">
+      <p class="by">صادرٌ عن</p>
+      <p class="name">حبيبكِ أنس</p>
+    </div>
+
+    <!-- big approval seal overlay -->
+    <div class="seal-overlay" id="seal" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5"/>
+        <circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path id="topArc" d="M 100 100 m -60 0 a 60 60 0 0 1 120 0" fill="none"/>
+        <path id="botArc" d="M 38 108 a 62 62 0 0 0 124 0" fill="none"/>
+        <text font-family="'Reem Kufi',sans-serif" font-size="20" font-weight="600" fill="currentColor">
+          <textPath href="#topArc" startOffset="50%" text-anchor="middle">APPROVED</textPath>
+        </text>
+        <text font-family="'Reem Kufi',sans-serif" font-size="15" fill="currentColor">
+          <textPath href="#botArc" startOffset="50%" text-anchor="middle">٢٩ · ٠٦ · ٢٠٢٦</textPath>
+        </text>
+        <text x="100" y="96" font-family="'Aref Ruqaa',serif" font-size="40" font-weight="700"
+              fill="currentColor" text-anchor="middle">موافَق</text>
+        <text x="100" y="128" font-family="'Reem Kufi',sans-serif" font-size="15"
+              fill="currentColor" text-anchor="middle">دائم · لا يُلغى</text>
+      </svg>
+    </div>
+
+    <div class="sparks" id="sparks" aria-hidden="true"></div>
+  </div>
+
+  <p class="foot">صُنع لكِ — ٢٩ يونيو ٢٠٢٦</p>
+</div>
 
 <script>
 (function(){
-"use strict";
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-document.addEventListener('contextmenu',e=>e.preventDefault());
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const DPR=Math.min(window.devicePixelRatio||1,2);
-
-/* ---------- synth (created on first gesture; iOS-safe) ---------- */
-let AC=null;
-function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
-  if(AC&&AC.state==='suspended') AC.resume(); return AC; }
-function tone(f,t,dur,type,vol){ const c=ac(); if(!c)return;
-  const o=c.createOscillator(),g=c.createGain();
-  o.type=type||'sine'; o.frequency.setValueAtTime(f,c.currentTime+t);
-  g.gain.setValueAtTime(0,c.currentTime+t);
-  g.gain.linearRampToValueAtTime(vol||.16,c.currentTime+t+.015);
-  g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+t+dur);
-  o.connect(g).connect(c.destination); o.start(c.currentTime+t); o.stop(c.currentTime+t+dur+.05); }
-const sfx={
-  paper(){tone(880,0,.06,'triangle',.07);tone(1320,.03,.05,'triangle',.05);},
-  pop(){tone(620,0,.12,'triangle',.2);},
-  tick(){tone(1100,0,.05,'square',.05);},
-  gavel(){ const c=ac(); if(!c)return;
-    const o=c.createOscillator(),g=c.createGain();
-    o.type='sine'; o.frequency.setValueAtTime(180,c.currentTime);
-    o.frequency.exponentialRampToValueAtTime(50,c.currentTime+.15);
-    g.gain.setValueAtTime(.55,c.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.22);
-    o.connect(g).connect(c.destination); o.start(); o.stop(c.currentTime+.26);
-    tone(2400,0,.04,'square',.06); },
-  fanfare(){[523,659,784,1047,1318].forEach((f,i)=>tone(f,i*.1,.45,'triangle',.12));},
-  alarm(){tone(700,0,.16,'square',.12);tone(700,.22,.16,'square',.12);}
-};
-function buzz(p){ if(navigator.vibrate) try{navigator.vibrate(p);}catch(e){} }
-
-/* ---------- stage switching ---------- */
-let current='act1';
-function go(id){
-  $('#'+current).classList.remove('on');
-  current=id;
-  const st=$('#'+id);
-  st.classList.add('on');
-  st.querySelectorAll('.rise').forEach((el,i)=>{
-    el.classList.remove('show');
-    setTimeout(()=>el.classList.add('show'),200+i*200);
-  });
-}
-$$('#act1 .rise').forEach((el,i)=>setTimeout(()=>el.classList.add('show'),300+i*200));
-
-/* ---------- ACT 1: folder ---------- */
-(function(){
-  const folder=$('#folder');let opened=false;
-  folder.addEventListener('pointerdown',()=>{
-    if(opened)return;opened=true;ac();
-    folder.classList.add('open');
-    sfx.paper();buzz(15);
-    setTimeout(()=>go('act2'),1100);
-  });
-})();
-
-/* ---------- ACT 2 → 3 ---------- */
-$('#toExhibits').addEventListener('click',()=>{sfx.pop();go('act3');});
-
-/* ---------- ACT 3: exhibits ---------- */
-(function(){
-  const seen=new Set(),btn=$('#toCourt');
-  $$('.exhibit').forEach(ex=>{
-    ex.addEventListener('click',()=>{
-      ex.classList.toggle('open');
-      if(ex.classList.contains('open')){sfx.paper();buzz(12);}
-      seen.add(ex.dataset.ex);
-      if(seen.size===3){btn.style.visibility='visible';btn.style.opacity='1';}
-    });
-  });
-  btn.addEventListener('click',()=>{sfx.pop();go('act4');runDeliberation();});
-})();
-
-/* ---------- ACT 4: deliberation ---------- */
-function runDeliberation(){
-  const ticker=$('#ticker');
-  const LINES=[
-    {t:'فتح ملف القضية رقم ٤٣٠ / ٢٠٢٦...'},
-    {t:'مراجعة سوابق المتهمة في النوم... (السجل حافل جدًا)'},
-    {t:'الاستماع لأقوال الشاهد... (متأثر، لكنه متحامل شوي)'},
-    {t:'استدعاء الضمير للمداولة...'},
-    {t:'تنبيه: القاضي تذكّر ضحكتها — خلل جسيم في الحياد ⚠️',alert:true},
-  ];
-  let i=0;
-  function next(){
-    if(i<LINES.length){
-      const L=LINES[i++];
-      const div=document.createElement('div');
-      div.className='line'+(L.alert?' alert':'');
-      div.innerHTML='<span class="dot"></span><span>'+L.t+'</span>';
-      ticker.appendChild(div);
-      requestAnimationFrame(()=>requestAnimationFrame(()=>div.classList.add('show')));
-      sfx.tick();
-      setTimeout(next, L.alert?1900:1500);
-    }else{
-      objection();
+  // build EU stars (12, in a circle)
+  var g=document.getElementById('eu-stars');
+  if(g){
+    var cx=30, cy=20, R=12, star='★';
+    for(var i=0;i<12;i++){
+      var a=(i/12)*2*Math.PI - Math.PI/2;
+      var x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+      var t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',x); t.setAttribute('y',y+3);
+      t.setAttribute('font-size','7'); t.setAttribute('text-anchor','middle');
+      t.textContent=star;
+      g.appendChild(t);
     }
   }
-  setTimeout(next,800);
-}
-function objection(){
-  const ob=$('#objection');
-  sfx.alarm();buzz([60,40,60]);
-  ob.classList.add('on');
-  if(!reduced)document.body.classList.add('shake');
-  setTimeout(()=>document.body.classList.remove('shake'),350);
-  setTimeout(()=>{
-    ob.classList.remove('on');
-    $('#defense').classList.add('on');
-    sfx.paper();
-  },1100);
-}
-$('#defenseOk').addEventListener('click',()=>{
-  $('#defense').classList.remove('on');
-  sfx.pop();
-  setTimeout(()=>go('act5'),350);
-});
 
-/* ---------- ACT 5: gavel ---------- */
-(function(){
-  const gavel=$('#gavel'),count=$('#bangCount');
-  const WORDS=['','الطرقة الأولى..','الثانية..','الثالثة — صدر الحكم!'];
-  let bangs=0,locked=false,done=false;
-  gavel.addEventListener('pointerdown',()=>{
-    if(done||locked)return;locked=true;
-    bangs++;
-    gavel.classList.remove('bang');
-    void gavel.offsetWidth;
-    gavel.classList.add('bang');
-    setTimeout(()=>{
-      sfx.gavel();buzz(45);
-      if(!reduced)document.body.classList.add('shake');
-      setTimeout(()=>document.body.classList.remove('shake'),300);
-    },120);
-    count.textContent=WORDS[bangs];
-    setTimeout(()=>{locked=false;},330);
-    if(bangs===3){done=true;setTimeout(showVerdict,700);}
-  });
-})();
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var btn=document.getElementById('stampBtn');
+  var seal=document.getElementById('seal');
+  var chip=document.getElementById('chip');
+  var reveal=document.getElementById('reveal');
+  var hint=document.getElementById('hint');
+  var permit=document.getElementById('permit');
+  var sparks=document.getElementById('sparks');
+  var done=false;
 
-function showVerdict(){
-  $('#gavelPhase').style.display='none';
-  const v=$('#verdict');
-  v.style.display='block';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>v.classList.add('show')));
-  setTimeout(()=>{
-    $('#vStamp').classList.add('slam');
-    setTimeout(()=>{
-      sfx.gavel();buzz([60,30,90]);
-      if(!reduced)document.body.classList.add('shake');
-      setTimeout(()=>document.body.classList.remove('shake'),350);
-    },260);
-  },1600);
-  setTimeout(()=>{
-    sfx.fanfare();
-    $('#finalLove').classList.add('show');
-    $('#replay').classList.add('show');
-    berries.start();
-  },2600);
-}
-$('#replay').addEventListener('click',()=>location.reload());
-
-/* ---------- raspberry rain ---------- */
-const berries=(function(){
-  const cv=$('#berryCanvas'),cx=cv.getContext('2d');
-  let W,H,parts=[],on=false,timer=null;
-  function size(){W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR;
-    cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';}
-  size();addEventListener('resize',size);
-  const EMO=['🍓','🍓','🍓','💗','⚖️'];
-  function spawn(){
-    parts.push({x:Math.random()*W,y:-40*DPR,
-      vy:(Math.random()*1.6+1.4)*DPR,vx:(Math.random()-.5)*1.2*DPR,
-      s:(Math.random()*14+18)*DPR,r:Math.random()*Math.PI,
-      vr:(Math.random()-.5)*.06,e:EMO[(Math.random()*EMO.length)|0]});
-  }
-  (function loop(){
-    cx.clearRect(0,0,W,H);
-    parts=parts.filter(p=>p.y<H+60*DPR);
-    for(const p of parts){
-      p.y+=p.vy;p.x+=p.vx;p.r+=p.vr;
-      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);
-      cx.font=p.s+'px serif';cx.textAlign='center';cx.textBaseline='middle';
-      cx.fillText(p.e,0,0);cx.restore();
+  function burst(){
+    if(reduce) return;
+    var colors=['#c8102e','#c4a24c','#9c0f24','#e9c873','#ffffff'];
+    for(var i=0;i<22;i++){
+      var s=document.createElement('span');
+      s.className='spark';
+      var c=colors[i%colors.length];
+      s.style.background=c;
+      sparks.appendChild(s);
+      var ang=Math.random()*Math.PI*2;
+      var dist=70+Math.random()*120;
+      var dx=Math.cos(ang)*dist;
+      var dy=Math.sin(ang)*dist - 40;
+      var rot=(Math.random()*360)|0;
+      s.animate([
+        {transform:'translate(-50%,-50%) translate(0,0) scale(1)',opacity:1},
+        {transform:'translate(-50%,-50%) translate('+dx+'px,'+dy+'px) rotate('+rot+'deg) scale(.3)',opacity:0}
+      ],{duration:850+Math.random()*350,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'});
+      (function(node){setTimeout(function(){node.remove();},1300);})(s);
     }
-    requestAnimationFrame(loop);
-  })();
-  return {start(){ if(on)return;on=true;
-    for(let i=0;i<(reduced?6:14);i++)setTimeout(spawn,i*120);
-    timer=setInterval(spawn,reduced?900:380);
-    setTimeout(()=>clearInterval(timer),20000);}};
-})();
+  }
 
+  function approve(){
+    if(done) return;
+    done=true;
+
+    seal.classList.add('fire');
+    if(!reduce){
+      permit.classList.add('shake');
+      setTimeout(function(){permit.classList.remove('shake');},450);
+    }
+    if(navigator.vibrate){ try{navigator.vibrate([14,40,22]);}catch(e){} }
+
+    setTimeout(burst, reduce?0:120);
+
+    setTimeout(function(){
+      chip.textContent='موافَق ✓';
+      chip.classList.add('approved');
+      reveal.classList.add('open');
+    }, reduce?0:260);
+
+    btn.classList.add('gone');
+    hint.textContent='تمّ الختم — التصريح ساري المفعول مدى الحياة ❤';
+  }
+
+  btn.addEventListener('click', approve);
 })();
 </script>
 </body>
